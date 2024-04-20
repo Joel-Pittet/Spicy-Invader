@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,76 +15,8 @@ using System.Windows.Input;
 namespace Spicy_Invader
 {
     
-    internal class SpaceShip : GameObject
+    internal class SpaceShip : SimpleObject
     {
-
-        /// <summary>
-        /// Position initiale du vaisseau sur l'axe Y
-        /// </summary>
-        private double _STARTING_POSITION_ON_Y = Console.WindowHeight / 1.1;
-
-        /// <summary>
-        /// Forme du vaisseau
-        /// </summary>
-        private string _spaceShipShape;
-
-        /// <summary>
-        /// GETTER / SETTER
-        /// Forme du vaisseau
-        /// </summary>
-        public string SpaceShipShape
-        {
-            get
-            {
-                return _spaceShipShape;
-            }
-            set
-            {
-                _spaceShipShape = value;
-            }
-        }
-
-        /// <summary>
-        /// Position du vaisseau sur l'axe X
-        /// </summary>
-        private int _positionOnX;
-          
-        /// <summary>
-        /// GETTER / SETTER
-        /// Position du vaisseau sur l'axe X
-        /// </summary>
-        public int PositionOnX
-        {
-            get
-            {
-                return _positionOnX;
-            }
-            set
-            {
-                _positionOnX = value;
-            }
-        }
-
-        /// <summary>
-        /// Nombre de vie du vaisseau
-        /// </summary>
-        private int _numberOfLives;
-
-        /// <summary>
-        /// GETTER / SETTER
-        /// Nombre de vie du vaisseau
-        /// </summary>
-        public int NumberOfLives
-        {
-            get
-            {
-                return _numberOfLives;
-            }
-            set
-            {
-                _numberOfLives = value;
-            }
-        }
 
         /// <summary>
         /// Vitesse de déplacement du vaisseau
@@ -100,49 +33,28 @@ namespace Spicy_Invader
         /// </summary>
         private int _maxPosLeft;
 
+        //Missile pour que le joueur puisse tirer avec le vaisseau
+        Missile missile;
+
 
         /// <summary>
         /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
         /// </summary>
-        /// <param name="posX">Position sur l'axe X</param>
+        /// <param name="positionOnX">Position sur l'axe X</param>
         /// <param name="nbLives">Nombre de vies</param>
         /// <param name="spaceShipShape">Forme du vaisseau</param>
-        public SpaceShip(int posX, int nbLives, string spaceShipShape)
+        public SpaceShip(int positionOnX, double positionOnY, int nbLives, string spaceShipShape)
         {
-            _positionOnX = posX;
-            _numberOfLives = nbLives;
-            _spaceShipShape = spaceShipShape;
+            PositionOnX = positionOnX;
+            PositionOnY = positionOnY;
+            NumberOfLives = nbLives;
+            ObjectShape = spaceShipShape;
             _maxPosLeft = spaceShipShape.Length - spaceShipShape.Length - 1;
             _maxPosRight = Console.WindowWidth - spaceShipShape.Length - 1;
+            missile = new Missile(positionOnX: PositionOnX, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
 
+            //Ajoute le vaisseau à la liste des objets du jeu
             gameObjects.Add(this);
-        }
-
-        /// <summary>
-        /// Affichage des objets du jeu
-        /// </summary>
-        public override void Draw()
-        {
-            //Position du vaisseau
-            Console.SetCursorPosition(_positionOnX, Convert.ToInt32(_STARTING_POSITION_ON_Y));
-
-            //Affiche le vaisseau et des espaces de chaque côtés pour que le vaisseau ne laisse pas de "trace"
-            Console.WriteLine(" " + SpaceShipShape + " ");
-        }
-
-        /// <summary>
-        /// Verification de l'état - vivant / mort - des objets du jeu
-        /// </summary>
-        public override bool IsAlive()
-        {
-            bool isAlive = false;
-
-            if (NumberOfLives > 0)
-            {
-                isAlive = true;
-            }
-
-            return isAlive;
         }
 
         /// <summary>
@@ -174,6 +86,17 @@ namespace Spicy_Invader
 
                 //Dessine le vaisseau
                 Draw();
+            }
+        }
+
+        /// <summary>
+        /// Tir du missile
+        /// </summary>
+        public void Shoot()
+        {
+            if(missile.NumberOfLives < 1)
+            {
+                missile = new Missile(positionOnX: PositionOnX, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
             }
         }
 
