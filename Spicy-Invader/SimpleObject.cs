@@ -98,11 +98,11 @@ namespace Spicy_Invader
         /// </summary>
         public override void Draw()
         {
-            //Position du vaisseau
+            //Position de l'objet
             Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
 
-            //Affiche le vaisseau et des espaces de chaque côtés pour que le vaisseau ne laisse pas de "trace"
-            Console.WriteLine(" " + ObjectShape + " ");
+            //Affiche l'objet
+            Console.WriteLine(ObjectShape);
         }
 
         /// <summary>

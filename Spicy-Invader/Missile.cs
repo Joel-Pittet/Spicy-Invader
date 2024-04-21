@@ -22,6 +22,11 @@ namespace Spicy_Invader
         private int _speed = 25;
 
         /// <summary>
+        /// Pour eviter d'effacer le centre du vaisseau
+        /// </summary>
+        bool isFirstRow = true;
+
+        /// <summary>
         /// Constructeur
         /// </summary>
         /// <param name="positionOnX">Position du missile sur l'axe X</param>
@@ -40,27 +45,63 @@ namespace Spicy_Invader
         /// Met à jour la position du missile sur la console
         /// </summary>
         public override void Update()
-        { 
-            //Place le curseur à la position du missile pour l'effacer
-            Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+        {
 
-            //Affiche un espace pour cacher l'ancienne position du missile
-            Console.WriteLine(" ");
+            if (PositionOnY - 1 >= 0)
+            {
+                //Si le missile vient d'etre tirer on efface pas la dernière position du missile
+                //pour éviter d'effacer le vaisseau
+                if (isFirstRow)
+                {
+                    //Change le bool pour le prochain tire
+                    isFirstRow = false;
 
-            //Change la position du missile
-            PositionOnY = PositionOnY - 1;
+                    //Change la position du missile
+                    PositionOnY = PositionOnY - 1;
 
-            //Place le curseur à la nouvelle position du missile
-            Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+                    //Place le curseur à la nouvelle position du missile
+                    Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
 
-            //Dessine le missile
-            Draw();
+                    //Dessine le missile
+                    Draw();
 
-            //Vitesse d'affichage du missile
-            Thread.Sleep(_speed);
+                    //Vitesse d'affichage du missile
+                    Thread.Sleep(_speed);
 
-            //Rapelle la méthode pour continuer le déplacement du missile
-            Update();
+                }
+
+                //Place le curseur à la position du missile pour l'effacer
+                Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+                //Affiche un espace pour cacher l'ancienne position du missile
+                Console.WriteLine(" ");
+
+                //Change la position du missile
+                PositionOnY = PositionOnY - 1;
+
+                //Place le curseur à la nouvelle position du missile
+                Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+                //Dessine le missile
+                Draw();
+
+                //Vitesse d'affichage du missile
+                Thread.Sleep(_speed);
+
+                //Rapelle la méthode pour continuer le déplacement du missile
+                Update();
+
+
+            }
+            else
+            {
+                //Place le curseur à la position du missile pour l'effacer
+                Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+                //Affiche un espace pour cacher l'ancienne position du missile
+                Console.WriteLine(" ");
+            }
+
         }
     }
 }

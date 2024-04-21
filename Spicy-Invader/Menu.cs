@@ -129,6 +129,13 @@ namespace Spicy_Invader
                     DrawMenu();
                     break;
                 }
+                //Dans le cas ou la flèche du haut est pressée et que l'option selectionnée est la première
+                else if (key.Key == ConsoleKey.UpArrow && selectedOption == 0)
+                {
+                    selectedOption = listMenuEntries.Count - 1;
+                    DrawMenu();
+                    break;
+                }
 
             } while (key.Key != ConsoleKey.Enter);
             

@@ -19,6 +19,9 @@ namespace Spicy_Invader
         [STAThread]
         static void Main(string[] args)
         {
+            //Empeche le scroll
+            //Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+
             //Instancie le menu principal
             Menu mainMenu = new Menu();
 

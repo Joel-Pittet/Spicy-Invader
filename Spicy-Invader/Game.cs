@@ -15,8 +15,9 @@ namespace Spicy_Invader
     {
 
         //Crée le vaisseau du joueur
-        SpaceShip playerSpaceShip = new SpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight / 1.1, nbLives: 3 ,spaceShipShape: "---|---");
-         
+        SpaceShip playerSpaceShip = new SpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight / 1.1, nbLives: 3 ,spaceShipShape: " ---|--- ");
+        
+
         /// <summary>
         /// Affiche tous les objets du jeu sur la console
         /// </summary>

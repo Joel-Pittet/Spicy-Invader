@@ -36,7 +36,6 @@ namespace Spicy_Invader
         //Missile pour que le joueur puisse tirer avec le vaisseau
         Missile missile;
 
-
         /// <summary>
         /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
         /// </summary>
@@ -50,15 +49,14 @@ namespace Spicy_Invader
             NumberOfLives = nbLives;
             ObjectShape = spaceShipShape;
             _maxPosLeft = spaceShipShape.Length - spaceShipShape.Length - 1;
-            _maxPosRight = Console.WindowWidth - spaceShipShape.Length - 1;
-            missile = new Missile(positionOnX: PositionOnX, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
+            _maxPosRight = Console.WindowWidth - spaceShipShape.Length + 2;
 
             //Ajoute le vaisseau à la liste des objets du jeu
             gameObjects.Add(this);
         }
 
         /// <summary>
-        /// Mise à jour de la position des objet du jeu
+        /// Mise à jour de la position du vaisseau et tir du missile
         /// </summary>
         public override void Update()
         {
@@ -86,6 +84,14 @@ namespace Spicy_Invader
 
                 //Dessine le vaisseau
                 Draw();
+
+            }
+            //Tir un missile si la barre espace est enfoncée
+            else if (Keyboard.IsKeyDown(Key.Space))
+            {
+                
+                Shoot();
+
             }
         }
 
@@ -94,11 +100,16 @@ namespace Spicy_Invader
         /// </summary>
         public void Shoot()
         {
-            if(missile.NumberOfLives < 1)
+            missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
+
+            missile.Update();
+
+            /*if(missile.NumberOfLives < 1)
             {
                 missile = new Missile(positionOnX: PositionOnX, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
-            }
+            }*/
         }
 
+        
     }
 }
