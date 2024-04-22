@@ -21,7 +21,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Vitesse de déplacement du vaisseau
         /// </summary>
-        private double _spaceShipSpeed = 1;
+        private int _spaceShipSpeed = 20;
 
         /// <summary>
         /// Enplacement maximum du vaisseau sur la droite de la fenêtre
@@ -65,10 +65,10 @@ namespace Spicy_Invader
             if (Keyboard.IsKeyDown(Key.Left) && (PositionOnX - 1) != _maxPosLeft)
             {
                 //Change la position du vaisseau de 1 à gauche
-                PositionOnX = PositionOnX - 1;
+                PositionOnX--;
 
                 //Patiente avant d'afficher le vaisseau, correspond à la vitesse du vaisseau
-                Thread.Sleep(Convert.ToInt32(_spaceShipSpeed));
+                Thread.Sleep(_spaceShipSpeed);
 
                 //Dessine le vaisseau
                 Draw();
@@ -77,10 +77,10 @@ namespace Spicy_Invader
             else if (Keyboard.IsKeyDown(Key.Right) && (PositionOnX + 1) != _maxPosRight)
             {
                 //Change la position du vaisseau de 1 à droite
-                PositionOnX = PositionOnX + 1;
+                PositionOnX++;
 
                 // Patiente avant d'afficher le vaisseau, correspond à la vitesse du vaisseau
-                Thread.Sleep(Convert.ToInt32(_spaceShipSpeed));
+                Thread.Sleep(_spaceShipSpeed);
 
                 //Dessine le vaisseau
                 Draw();
@@ -89,9 +89,9 @@ namespace Spicy_Invader
             //Tir un missile si la barre espace est enfoncée
             else if (Keyboard.IsKeyDown(Key.Space))
             {
-                
+                //Tir
                 Shoot();
-
+                
             }
         }
 
@@ -100,14 +100,30 @@ namespace Spicy_Invader
         /// </summary>
         public void Shoot()
         {
-            missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
-
-            missile.Update();
-
-            /*if(missile.NumberOfLives < 1)
+            //Crée un missile pour la première fois
+            if (missile == null)
             {
-                missile = new Missile(positionOnX: PositionOnX, positionOnY: PositionOnY, numberOfLives: 1, shape: "|");
-            }*/
+                //Donne les propriétés au missile
+                missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY - 1, numberOfLives: 1, shape: "|");
+
+                //Ajoute le missile aux objets du jeu
+                gameObjects.Add(missile);
+            }
+            //Lorsque le missile est mort
+            //On le retire de la liste et on crée un nouveau missile qu'on ajoute dans la liste
+            else if (missile.IsAlive() == false)
+            {
+                //Retire le missile de la liste des objets du jeu
+                gameObjects.Remove(missile);
+
+                //Donne les propriétés au missile
+                missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY - 1, numberOfLives: 1, shape: "|");
+
+                //Ajoute le missile aux objets du jeu
+                gameObjects.Add(missile);
+
+            }
+
         }
 
         

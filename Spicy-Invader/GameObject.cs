@@ -17,7 +17,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Liste des objets du jeu
         /// </summary>
-        public List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjects = new List<GameObject>();
 
         /// <summary>
         /// Affichage des objets du jeu

@@ -19,12 +19,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Vitesse de déplacement du missile
         /// </summary>
-        private int _speed = 25;
-
-        /// <summary>
-        /// Pour eviter d'effacer le centre du vaisseau
-        /// </summary>
-        bool isFirstRow = true;
+        private int _speed = 17;
 
         /// <summary>
         /// Constructeur
@@ -46,41 +41,16 @@ namespace Spicy_Invader
         /// </summary>
         public override void Update()
         {
-
+            //Vérifie que le tir puisse être fait sans sortir de la console
+            //si oui, le fait
+            //Si non, fait mourir le missile et l'efface
             if (PositionOnY - 1 >= 0)
             {
-                //Si le missile vient d'etre tirer on efface pas la dernière position du missile
-                //pour éviter d'effacer le vaisseau
-                if (isFirstRow)
-                {
-                    //Change le bool pour le prochain tire
-                    isFirstRow = false;
-
-                    //Change la position du missile
-                    PositionOnY = PositionOnY - 1;
-
-                    //Place le curseur à la nouvelle position du missile
-                    Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
-
-                    //Dessine le missile
-                    Draw();
-
-                    //Vitesse d'affichage du missile
-                    Thread.Sleep(_speed);
-
-                }
-
-                //Place le curseur à la position du missile pour l'effacer
-                Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
-
-                //Affiche un espace pour cacher l'ancienne position du missile
-                Console.WriteLine(" ");
+                //Efface la position précédente du missile
+                ClearMissile();
 
                 //Change la position du missile
-                PositionOnY = PositionOnY - 1;
-
-                //Place le curseur à la nouvelle position du missile
-                Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+                PositionOnY--;
 
                 //Dessine le missile
                 Draw();
@@ -88,20 +58,28 @@ namespace Spicy_Invader
                 //Vitesse d'affichage du missile
                 Thread.Sleep(_speed);
 
-                //Rapelle la méthode pour continuer le déplacement du missile
-                Update();
-
-
             }
             else
             {
-                //Place le curseur à la position du missile pour l'effacer
-                Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+                //Efface le missile
+                ClearMissile();
 
-                //Affiche un espace pour cacher l'ancienne position du missile
-                Console.WriteLine(" ");
+                //Fait mourir le missile pour qu'un autre puisse être tiré
+                NumberOfLives = 0;
             }
 
+        }
+
+        /// <summary>
+        /// Efface l'ancienne position du missile
+        /// </summary>
+        public void ClearMissile()
+        {
+            //Place le curseur à la position du missile pour l'effacer
+            Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+            //Affiche un espace pour cacher l'ancienne position du missile
+            Console.WriteLine(" ");
         }
     }
 }
