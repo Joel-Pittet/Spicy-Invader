@@ -19,7 +19,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Vitesse de déplacement du missile
         /// </summary>
-        private int _speed = 17;
+        //private int _speed = 17;
 
         /// <summary>
         /// Constructeur
@@ -54,9 +54,6 @@ namespace Spicy_Invader
 
                 //Dessine le missile
                 Draw();
-
-                //Vitesse d'affichage du missile
-                Thread.Sleep(_speed);
 
             }
             else

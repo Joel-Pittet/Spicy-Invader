@@ -21,7 +21,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Vitesse de déplacement du vaisseau
         /// </summary>
-        private int _spaceShipSpeed = 20;
+        //private int _spaceShipSpeed = 20;
 
         /// <summary>
         /// Enplacement maximum du vaisseau sur la droite de la fenêtre
@@ -67,27 +67,23 @@ namespace Spicy_Invader
                 //Change la position du vaisseau de 1 à gauche
                 PositionOnX--;
 
-                //Patiente avant d'afficher le vaisseau, correspond à la vitesse du vaisseau
-                Thread.Sleep(_spaceShipSpeed);
-
                 //Dessine le vaisseau
                 Draw();
 
             }// Lorsque la flèche de droite est appuyée
-            else if (Keyboard.IsKeyDown(Key.Right) && (PositionOnX + 1) != _maxPosRight)
+            
+            if (Keyboard.IsKeyDown(Key.Right) && (PositionOnX + 1) != _maxPosRight)
             {
                 //Change la position du vaisseau de 1 à droite
                 PositionOnX++;
-
-                // Patiente avant d'afficher le vaisseau, correspond à la vitesse du vaisseau
-                Thread.Sleep(_spaceShipSpeed);
 
                 //Dessine le vaisseau
                 Draw();
 
             }
+
             //Tir un missile si la barre espace est enfoncée
-            else if (Keyboard.IsKeyDown(Key.Space))
+            if (Keyboard.IsKeyDown(Key.Space))
             {
                 //Tir
                 Shoot();
@@ -126,6 +122,5 @@ namespace Spicy_Invader
 
         }
 
-        
     }
 }

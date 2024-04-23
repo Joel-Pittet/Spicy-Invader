@@ -15,6 +15,8 @@ namespace Spicy_Invader
 {
     internal class Game
     {
+        //Vitesse du jeu
+        private const int _GAME_SPEED = 30;
 
         //Crée le vaisseau du joueur
         SpaceShip playerSpaceShip = new SpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight / 1.1, nbLives: 3 ,spaceShipShape: " ---|--- ");
@@ -45,6 +47,7 @@ namespace Spicy_Invader
             GameObject.gameObjects.Add(bunkerLeft);
             GameObject.gameObjects.Add(bunkerCenter);
             GameObject.gameObjects.Add(bunkerRight);
+            
 
         }
 
@@ -60,13 +63,14 @@ namespace Spicy_Invader
                 //Copie la liste des objets du jeu pour pouvoir la parcourir même si d'autre objets son ajouter au fur et a mesure du jeu
                 List<GameObject> gameObjectsCopy = new List<GameObject>(GameObject.gameObjects);
 
-
                //Parcours la liste des objets du jeu et les met à jour un par un
                foreach (var obj in gameObjectsCopy)
                {
                     obj.Update();
                }
 
+               //Vitesse générale du jeu
+               Thread.Sleep(_GAME_SPEED);
 
             } while (playerSpaceShip.IsAlive() == true);
         }
