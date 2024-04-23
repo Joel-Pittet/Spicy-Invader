@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -41,11 +42,14 @@ namespace Spicy_Invader
         /// </summary>
         public override void Update()
         {
+            bool hasTouched = CheckCollisionWithBunkers();
+
             //Vérifie que le tir puisse être fait sans sortir de la console
             //si oui, le fait
             //Si non, fait mourir le missile et l'efface
-            if (PositionOnY - 1 >= 0)
+            if (PositionOnY - 1 >= 0 && hasTouched == false)
             {
+
                 //Efface la position précédente du missile
                 ClearMissile();
 
@@ -65,6 +69,36 @@ namespace Spicy_Invader
                 NumberOfLives = 0;
             }
 
+        }
+
+
+        /// <summary>
+        /// Vérifie la collision avec les bunkers
+        /// </summary>
+        public bool CheckCollisionWithBunkers()
+        {
+            bool hasTouched = false;
+
+            foreach (var bunker in GameObject.gameObjects.OfType<Bunker>())
+            {
+                foreach (var position in bunker.positions)
+                {
+
+                    // Vérifie si le missile entre en collision avec une position de bunker
+                    if (PositionOnX == position.Item1 && (PositionOnY - 0.27272727272727) == position.Item2)
+                    {
+                        //Le missile a touché un bunker
+                        hasTouched = true;
+
+                        //Enlève la partie de bunker touchée
+                        positions.Remove(position);
+
+                        break;
+                    }
+                }
+            }
+
+            return hasTouched;
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ namespace Spicy_Invader
     internal class Bunker : SimpleObject
     {
 
+
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -45,9 +46,14 @@ namespace Spicy_Invader
                     //Position initiale du bunker
                     Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
 
-                    //Dessine le haut des bunker
+                    //Dessine le haut du bunker
                     Console.WriteLine(bunkerTop);
 
+                    // Ajouter les positions des "X" dans bunkerTop à la liste
+                    for (int j = 0; j < bunkerTop.Length; j++)
+                    {
+                        positions.Add(new Tuple<int, int>(PositionOnX + j, Convert.ToInt32(PositionOnY)));
+                    }
                 }
                 else if (i == 1)
                 {
@@ -65,7 +71,14 @@ namespace Spicy_Invader
 
                     //Dessine le milieu des bunkers
                     Console.WriteLine(bunkerMiddle);
+
+                    // Ajouter les positions des "X" dans bunkerMiddle à la liste
+                    for (int j = 0; j < bunkerMiddle.Length; j++)
+                    {
+                        positions.Add(new Tuple<int, int>(PositionOnX + j, Convert.ToInt32(PositionOnY)));
+                    }
                 }
+                
                 else if (i == 2)
                 {
                     //Décale de 1 l'apparition de l'étage suivant pour un effet pyramide
@@ -82,8 +95,13 @@ namespace Spicy_Invader
 
                     //Dessine le bas des bunkers
                     Console.WriteLine(bunkerBottom);
-                }
 
+                    // Ajouter les positions des "X" dans bunkerBottom à la liste
+                    for (int j = 0; j < bunkerBottom.Length; j++)
+                    {
+                        positions.Add(new Tuple<int, int>(PositionOnX + j, Convert.ToInt32(PositionOnY)));
+                    }
+                }
             }
 
         }

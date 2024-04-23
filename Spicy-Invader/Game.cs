@@ -15,19 +15,22 @@ namespace Spicy_Invader
 {
     internal class Game
     {
-        //Vitesse du jeu
+
+        /// <summary>
+        /// Vitesse du jeu
+        /// </summary>
         private const int _GAME_SPEED = 30;
 
-        //Crée le vaisseau du joueur
+        /// <summary>
+        /// Crée le vaisseau du joueur
+        /// </summary>
         SpaceShip playerSpaceShip = new SpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight / 1.1, nbLives: 3 ,spaceShipShape: " ---|--- ");
 
 
-        //Crée 3 bunker
+        ///Crée 3 bunker
         Bunker bunkerLeft = new Bunker(Console.WindowWidth / 6, Console.WindowHeight / 1.4);
         Bunker bunkerCenter = new Bunker(Console.WindowWidth / 2, Console.WindowHeight / 1.4);
         Bunker bunkerRight = new Bunker(Console.WindowWidth / 1.2, Console.WindowHeight / 1.4);
-
-        
 
         /// <summary>
         /// Affiche tous les objets du jeu sur la console
@@ -47,8 +50,6 @@ namespace Spicy_Invader
             GameObject.gameObjects.Add(bunkerLeft);
             GameObject.gameObjects.Add(bunkerCenter);
             GameObject.gameObjects.Add(bunkerRight);
-            
-
         }
 
         /// <summary>

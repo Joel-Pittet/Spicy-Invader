@@ -14,6 +14,7 @@ namespace Spicy_Invader
 {
     abstract class GameObject
     {
+
         /// <summary>
         /// Liste des objets du jeu
         /// </summary>
@@ -33,6 +34,12 @@ namespace Spicy_Invader
         /// Mise à jour de la position des objet du jeu
         /// </summary>
         public abstract void Update();
+
+        /// <summary>
+        /// Gère la colision entre le missile et les objets du jeu
+        /// </summary>
+        /// <param name="missile">Missile</param>
+        public abstract void Collision(Missile missile);
 
         
 

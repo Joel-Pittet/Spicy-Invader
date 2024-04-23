@@ -70,8 +70,9 @@ namespace Spicy_Invader
                 //Dessine le vaisseau
                 Draw();
 
-            }// Lorsque la flèche de droite est appuyée
-            
+            }
+
+            // Lorsque la flèche de droite est appuyée
             if (Keyboard.IsKeyDown(Key.Right) && (PositionOnX + 1) != _maxPosRight)
             {
                 //Change la position du vaisseau de 1 à droite

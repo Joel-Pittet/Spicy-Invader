@@ -121,5 +121,17 @@ namespace Spicy_Invader
             return isAlive;
         }
 
+        /// <summary>
+        /// Gère les colisions entre le missile et les objets du jeu
+        /// </summary>
+        /// <param name="missile">Missile</param>
+        public override void Collision(Missile missile)
+        {
+            
+        }
+
+        // Crée une liste pour stocker les positions des "X"
+        public List<Tuple<int, int>> positions = new List<Tuple<int, int>>();
+
     }
 }
