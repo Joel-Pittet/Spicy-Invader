@@ -43,63 +43,81 @@ namespace Spicy_Invader
             {
                 if (i == 0)
                 {
-                    //Position initiale du bunker
-                    Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
 
-                    //Dessine le haut du bunker
-                    Console.WriteLine(bunkerTop);
-
-                    // Ajouter les positions des "X" dans bunkerTop à la liste
+                    //Parcourt l'étage supérieur du bunker et affiche chaque caractère les un apres les autres
+                    //Ajoute leurs position dans un tuple cela sert à gérer les colisions
                     for (int j = 0; j < bunkerTop.Length; j++)
                     {
-                        positions.Add(new Tuple<int, int>(PositionOnX + j, Convert.ToInt32(PositionOnY)));
+                        
+                        //Position du caractère à ecrire
+                        Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+                        //Ajoute la position du caractère dans le tuple
+                        ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, Convert.ToInt32(PositionOnY)));
+
+                        //Ecrit un "X" du bunker
+                        Console.Write(bunkerTop[j]);
+
+                        //Place le prochain caractère à coté de celui écrit
+                        PositionOnX++;
+
                     }
+
+                    //Remet la position au dernier caractère de l'étage
+                    PositionOnX--;
                 }
+                
                 else if (i == 1)
                 {
-                    //Décale de 1 l'apparition de l'étage suivant pour un effet pyramide
-                    PositionOnX--;
-
-                    //Position initiale du bunker sur l'axe X
-                    Console.CursorLeft = PositionOnX;
-
                     //Descend le curseur de 1 pour afficher le niveau suivant en dessous du précédent
                     PositionOnY++;
 
-                    //Position sur l'axe Y
-                    Console.CursorTop = Convert.ToInt32(PositionOnY);
-
-                    //Dessine le milieu des bunkers
-                    Console.WriteLine(bunkerMiddle);
+                    //Remet la position sur X un cran avant le dernier etage (effet pyramide)
+                    PositionOnX = PositionOnX - bunkerTop.Length;
 
                     // Ajouter les positions des "X" dans bunkerMiddle à la liste
                     for (int j = 0; j < bunkerMiddle.Length; j++)
                     {
-                        positions.Add(new Tuple<int, int>(PositionOnX + j, Convert.ToInt32(PositionOnY)));
+
+                        //Position du caractère
+                        Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+                        //Ajoute la position du caractère dans le tuple
+                        ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, Convert.ToInt32(PositionOnY)));
+
+                        //Ecrit un "X" du bunker
+                        Console.Write(bunkerMiddle[j]);
+
+                        //Place le prochain caractère à coté de celui écrit
+                        PositionOnX++;
+
                     }
+
+                    //Remet la position au dernier caractère de l'étage
+                    PositionOnX--;
                 }
-                
                 else if (i == 2)
                 {
-                    //Décale de 1 l'apparition de l'étage suivant pour un effet pyramide
-                    PositionOnX--;
-
-                    //Position initiale du bunker
-                    Console.CursorLeft = PositionOnX;
-
                     //Descend le curseur de 1 pour afficher le niveau suivant en dessous du précédent
                     PositionOnY++;
 
-                    //Position sur l'axe Y
-                    Console.CursorTop = Convert.ToInt32(PositionOnY);
-
-                    //Dessine le bas des bunkers
-                    Console.WriteLine(bunkerBottom);
+                    //Décale de 1 l'apparition de l'étage suivant pour un effet pyramide
+                    PositionOnX = PositionOnX - bunkerMiddle.Length;
 
                     // Ajouter les positions des "X" dans bunkerBottom à la liste
                     for (int j = 0; j < bunkerBottom.Length; j++)
                     {
-                        positions.Add(new Tuple<int, int>(PositionOnX + j, Convert.ToInt32(PositionOnY)));
+                        //Place le curseur pour afficher le carctère
+                        Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+
+                        //Ajoute la position du caractère dans le tuple
+                        ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, Convert.ToInt32(PositionOnY)));
+
+                        //Dessine le bas des bunkers
+                        Console.Write(bunkerBottom[j]);
+
+                        //Place le prochain caractère à coté de celui écrit
+                        PositionOnX++;
                     }
                 }
             }

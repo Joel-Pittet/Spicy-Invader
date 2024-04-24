@@ -108,7 +108,7 @@ namespace Spicy_Invader
             }
             //Lorsque le missile est mort
             //On le retire de la liste et on crée un nouveau missile qu'on ajoute dans la liste
-            else if (missile.IsAlive() == false)
+            else if (missile.NumberOfLives == 0)
             {
                 //Retire le missile de la liste des objets du jeu
                 gameObjects.Remove(missile);

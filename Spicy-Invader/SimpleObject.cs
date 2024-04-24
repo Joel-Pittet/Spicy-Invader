@@ -131,7 +131,7 @@ namespace Spicy_Invader
         }
 
         // Crée une liste pour stocker les positions des "X"
-        public List<Tuple<int, int>> positions = new List<Tuple<int, int>>();
+        public List<Tuple<int, int>> ObjectToTouchPositions = new List<Tuple<int, int>>();
 
     }
 }

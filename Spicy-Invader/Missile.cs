@@ -81,17 +81,21 @@ namespace Spicy_Invader
 
             foreach (var bunker in GameObject.gameObjects.OfType<Bunker>())
             {
-                foreach (var position in bunker.positions)
+
+                for (int i = 0; i < bunker.ObjectToTouchPositions.Count; i++)
                 {
+                    int positionOnYInInt = Convert.ToInt32(PositionOnY);
 
                     // Vérifie si le missile entre en collision avec une position de bunker
-                    if (PositionOnX == position.Item1 && (PositionOnY - 0.27272727272727) == position.Item2)
+                    if (PositionOnX == bunker.ObjectToTouchPositions[i].Item1 && positionOnYInInt == bunker.ObjectToTouchPositions[i].Item2)
                     {
                         //Le missile a touché un bunker
                         hasTouched = true;
 
+                        Tuple<int, int> touchedX = new Tuple<int, int>(0,0);
+
                         //Enlève la partie de bunker touchée
-                        positions.Remove(position);
+                        bunker.ObjectToTouchPositions[i] = touchedX;
 
                         break;
                     }

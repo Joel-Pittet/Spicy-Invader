@@ -43,8 +43,8 @@ namespace Spicy_Invader
 
             //Affiche les bunkers
             bunkerLeft.DrawBunker();
-            bunkerCenter.DrawBunker();
-            bunkerRight.DrawBunker();
+            //bunkerCenter.DrawBunker();
+            //bunkerRight.DrawBunker();
 
             //Ajoute les bunkers à la liste des objet du jeu
             GameObject.gameObjects.Add(bunkerLeft);
