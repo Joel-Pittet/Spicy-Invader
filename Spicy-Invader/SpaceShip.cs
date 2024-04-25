@@ -36,6 +36,7 @@ namespace Spicy_Invader
         //Missile pour que le joueur puisse tirer avec le vaisseau
         Missile missile;
 
+
         /// <summary>
         /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
         /// </summary>
@@ -105,10 +106,13 @@ namespace Spicy_Invader
 
                 //Ajoute le missile aux objets du jeu
                 gameObjects.Add(missile);
+
             }
+           
+
             //Lorsque le missile est mort
             //On le retire de la liste et on crée un nouveau missile qu'on ajoute dans la liste
-            else if (missile.NumberOfLives == 0)
+            /*if (missile.NumberOfLives == 0)
             {
                 //Retire le missile de la liste des objets du jeu
                 gameObjects.Remove(missile);
@@ -119,7 +123,7 @@ namespace Spicy_Invader
                 //Ajoute le missile aux objets du jeu
                 gameObjects.Add(missile);
 
-            }
+            }*/
 
         }
 

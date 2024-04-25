@@ -42,12 +42,49 @@ namespace Spicy_Invader
         /// </summary>
         public override void Update()
         {
-            bool hasTouched = CheckCollisionWithBunkers();
 
+            bool hasTouched = checkColisionWithBunker();
+
+            if (hasTouched == true)
+            {
+                //Efface le missile
+                ClearMissile();
+
+                //Fait mourir le missile pour qu'un autre puisse être tiré
+                NumberOfLives = 0;
+
+                
+            }
+
+            if (hasTouched == false && PositionOnY - 1 >= 0)
+            {
+                //Efface la position précédente du missile
+                ClearMissile();
+
+                //Change la position du missile
+                PositionOnY--;
+
+                //Dessine le missile
+                Draw();
+
+            }else if (hasTouched == false && PositionOnY - 1 < 0)
+            {
+                //Efface le missile
+                ClearMissile();
+
+                //Fait mourir le missile pour qu'un autre puisse être tiré
+                NumberOfLives = 0;
+            }
+
+            
+            
+
+
+            /*
             //Vérifie que le tir puisse être fait sans sortir de la console
             //si oui, le fait
             //Si non, fait mourir le missile et l'efface
-            if (PositionOnY - 1 >= 0 && hasTouched == false)
+            if (PositionOnY - 1 >= 0)
             {
 
                 //Efface la position précédente du missile
@@ -67,18 +104,21 @@ namespace Spicy_Invader
 
                 //Fait mourir le missile pour qu'un autre puisse être tiré
                 NumberOfLives = 0;
-            }
+            }*/
 
         }
 
-
         /// <summary>
-        /// Vérifie la collision avec les bunkers
+        /// Verifie si le missile à touché le bunker
         /// </summary>
-        public bool CheckCollisionWithBunkers()
+        /// <returns>TRUE si le bunker à été touché</returns>
+        public bool checkColisionWithBunker()
         {
             bool hasTouched = false;
 
+            Tuple<int, int> test = new Tuple<int, int>(0, 0);
+
+            //Colision avec les bunkers
             foreach (var bunker in GameObject.gameObjects.OfType<Bunker>())
             {
 
@@ -89,16 +129,14 @@ namespace Spicy_Invader
                     // Vérifie si le missile entre en collision avec une position de bunker
                     if (PositionOnX == bunker.ObjectToTouchPositions[i].Item1 && positionOnYInInt == bunker.ObjectToTouchPositions[i].Item2)
                     {
-                        //Le missile a touché un bunker
                         hasTouched = true;
 
-                        Tuple<int, int> touchedX = new Tuple<int, int>(0,0);
+                        bunker.ObjectToTouchPositions[i] = test;
 
-                        //Enlève la partie de bunker touchée
-                        bunker.ObjectToTouchPositions[i] = touchedX;
+                        return hasTouched;
 
-                        break;
                     }
+
                 }
             }
 

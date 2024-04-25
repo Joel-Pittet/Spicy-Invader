@@ -24,7 +24,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Crée le vaisseau du joueur
         /// </summary>
-        SpaceShip playerSpaceShip = new SpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight / 1.1, nbLives: 3 ,spaceShipShape: " ---|--- ");
+        SpaceShip playerSpaceShip = new SpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight - 4, nbLives: 3 ,spaceShipShape: " ---|--- ");
 
 
         ///Crée 3 bunker
