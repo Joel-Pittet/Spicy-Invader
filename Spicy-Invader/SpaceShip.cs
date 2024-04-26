@@ -3,6 +3,7 @@
 ///Lieu: Lausanne - ETML
 ///Description: Classe qui contient les méthodes concernant la partie "jeu" du programme
 
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,7 @@ namespace Spicy_Invader
         private int _maxPosLeft;
 
         //Missile pour que le joueur puisse tirer avec le vaisseau
-        Missile missile;
-
+        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives:0, shape:"mm");
 
         /// <summary>
         /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
@@ -43,7 +43,7 @@ namespace Spicy_Invader
         /// <param name="positionOnX">Position sur l'axe X</param>
         /// <param name="nbLives">Nombre de vies</param>
         /// <param name="spaceShipShape">Forme du vaisseau</param>
-        public SpaceShip(int positionOnX, double positionOnY, int nbLives, string spaceShipShape)
+        public SpaceShip(int positionOnX, int positionOnY, int nbLives, string spaceShipShape)
         {
             PositionOnX = positionOnX;
             PositionOnY = positionOnY;
@@ -89,7 +89,6 @@ namespace Spicy_Invader
             {
                 //Tir
                 Shoot();
-                
             }
         }
 
@@ -98,8 +97,8 @@ namespace Spicy_Invader
         /// </summary>
         public void Shoot()
         {
-            //Crée un missile pour la première fois
-            if (missile == null)
+            //Nouveau missile chaque fois que le nombre de vie est à zéro
+            if (missile.NumberOfLives == 0)
             {
                 //Donne les propriétés au missile
                 missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY - 1, numberOfLives: 1, shape: "|");
@@ -108,22 +107,6 @@ namespace Spicy_Invader
                 gameObjects.Add(missile);
 
             }
-           
-
-            //Lorsque le missile est mort
-            //On le retire de la liste et on crée un nouveau missile qu'on ajoute dans la liste
-            /*if (missile.NumberOfLives == 0)
-            {
-                //Retire le missile de la liste des objets du jeu
-                gameObjects.Remove(missile);
-
-                //Donne les propriétés au missile
-                missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY - 1, numberOfLives: 1, shape: "|");
-
-                //Ajoute le missile aux objets du jeu
-                gameObjects.Add(missile);
-
-            }*/
 
         }
 

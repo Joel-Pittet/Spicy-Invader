@@ -17,7 +17,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Option sélectionnée parmi le menu
         /// </summary>
-        int selectedOption = 0;
+        int selectedOption;
 
         //Affiche le menu
         public int DrawMenu()

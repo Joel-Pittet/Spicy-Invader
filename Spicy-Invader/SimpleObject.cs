@@ -54,13 +54,13 @@ namespace Spicy_Invader
         /// <summary>
         /// Position de l'objet sur l'axe Y
         /// </summary>
-        private double _positionOnY;
+        private int _positionOnY;
 
         /// <summary>
         /// GETTER / SETTER
         /// Position de l'objet sur l'axe Y
         /// </summary>
-        public double PositionOnY
+        public int PositionOnY
         {
             get
             {
@@ -127,11 +127,18 @@ namespace Spicy_Invader
         /// <param name="missile">Missile</param>
         public override void Collision(Missile missile)
         {
-            
+             
         }
 
-        // Crée une liste pour stocker les positions des "X"
+        /// <summary>
+        /// Crée une liste pour stocker les positions des "X"
+        /// </summary>
         public List<Tuple<int, int>> ObjectToTouchPositions = new List<Tuple<int, int>>();
+
+        /// <summary>
+        /// Liste des objets du jeu
+        /// </summary>
+        public static List<SimpleObject> gameObjects = new List<SimpleObject>();
 
     }
 }

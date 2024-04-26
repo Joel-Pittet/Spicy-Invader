@@ -16,11 +16,6 @@ namespace Spicy_Invader
     {
 
         /// <summary>
-        /// Liste des objets du jeu
-        /// </summary>
-        public static List<GameObject> gameObjects = new List<GameObject>();
-
-        /// <summary>
         /// Affichage des objets du jeu
         /// </summary>
         public abstract void Draw();
@@ -40,9 +35,6 @@ namespace Spicy_Invader
         /// </summary>
         /// <param name="missile">Missile</param>
         public abstract void Collision(Missile missile);
-
-        
-
 
     }
 }

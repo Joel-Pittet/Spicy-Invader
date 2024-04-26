@@ -21,6 +21,8 @@ namespace Spicy_Invader
         /// </summary>
         private const int _GAME_SPEED = 30;
 
+        int positionBunkerLeft;
+
         /// <summary>
         /// Crée le vaisseau du joueur
         /// </summary>
@@ -28,28 +30,37 @@ namespace Spicy_Invader
 
 
         ///Crée 3 bunker
-        Bunker bunkerLeft = new Bunker(Console.WindowWidth / 6, Console.WindowHeight / 1.4);
-        Bunker bunkerCenter = new Bunker(Console.WindowWidth / 2, Console.WindowHeight / 1.4);
-        Bunker bunkerRight = new Bunker(Console.WindowWidth / 1.2, Console.WindowHeight / 1.4);
+        Bunker bunkerLeft = new Bunker(Console.WindowWidth - 100, Console.WindowHeight - 10);
+        Bunker bunkerCenter = new Bunker(Console.WindowWidth - 60, Console.WindowHeight - 10);
+        Bunker bunkerRight = new Bunker(Console.WindowWidth - 25, Console.WindowHeight - 10);
+
+        /// <summary>
+        /// Calcule la position des bunker par rapport à la fenetre
+        /// </summary>
+        public void PositionBunker()
+        {
+            positionBunkerLeft = Console.WindowWidth - ((3 * bunkerLeft.BunkerTop.Length)  / 3);
+        }
+
 
         /// <summary>
         /// Affiche tous les objets du jeu sur la console
         /// </summary>
         public void DrawGame()
         {
-
+            
             //Affiche le vaisseau du joueur
             playerSpaceShip.Draw();
 
             //Affiche les bunkers
             bunkerLeft.DrawBunker();
-            //bunkerCenter.DrawBunker();
-            //bunkerRight.DrawBunker();
+            bunkerCenter.DrawBunker();
+            bunkerRight.DrawBunker();
 
             //Ajoute les bunkers à la liste des objet du jeu
-            GameObject.gameObjects.Add(bunkerLeft);
-            GameObject.gameObjects.Add(bunkerCenter);
-            GameObject.gameObjects.Add(bunkerRight);
+            SimpleObject.gameObjects.Add(bunkerLeft);
+            SimpleObject.gameObjects.Add(bunkerCenter);
+            SimpleObject.gameObjects.Add(bunkerRight);
         }
 
         /// <summary>
@@ -62,7 +73,7 @@ namespace Spicy_Invader
             do
             {
                 //Copie la liste des objets du jeu pour pouvoir la parcourir même si d'autre objets son ajouter au fur et a mesure du jeu
-                List<GameObject> gameObjectsCopy = new List<GameObject>(GameObject.gameObjects);
+                List<SimpleObject> gameObjectsCopy = new List<SimpleObject>(SimpleObject.gameObjects);
 
                //Parcours la liste des objets du jeu et les met à jour un par un
                foreach (var obj in gameObjectsCopy)
