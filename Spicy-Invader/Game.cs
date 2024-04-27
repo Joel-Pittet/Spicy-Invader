@@ -21,7 +21,22 @@ namespace Spicy_Invader
         /// </summary>
         private const int _GAME_SPEED = 30;
 
+        /// <summary>
+        /// Position du bunker de gauche sur la console
+        /// </summary>
         int positionBunkerLeft;
+
+        /// <summary>
+        /// Position du bunker du milieu sur la console
+        /// </summary>
+        int positionBunkerMiddle;
+
+        /// <summary>
+        /// Position du bunker de droite sur la console
+        /// </summary>
+        int positionBunkerRight;
+
+       
 
         /// <summary>
         /// Crée le vaisseau du joueur
@@ -30,16 +45,19 @@ namespace Spicy_Invader
 
 
         ///Crée 3 bunker
-        Bunker bunkerLeft = new Bunker(Console.WindowWidth - 100, Console.WindowHeight - 10);
-        Bunker bunkerCenter = new Bunker(Console.WindowWidth - 60, Console.WindowHeight - 10);
-        Bunker bunkerRight = new Bunker(Console.WindowWidth - 25, Console.WindowHeight - 10);
+        Bunker bunkerLeft = new Bunker(positionOnX: 0, positionOnY: 0);
+        Bunker bunkerMiddle = new Bunker(positionOnX: 0, positionOnY: 0);
+        Bunker bunkerRight = new Bunker(positionOnX: 0, positionOnY: 0);
 
         /// <summary>
         /// Calcule la position des bunker par rapport à la fenetre
         /// </summary>
-        public void PositionBunker()
+        public void CalculatePositionBunker()
         {
-            positionBunkerLeft = Console.WindowWidth - ((3 * bunkerLeft.BunkerTop.Length)  / 3);
+            positionBunkerLeft = Console.WindowWidth - bunkerLeft.BunkerBottom.Length * 12;
+            positionBunkerMiddle = Console.WindowWidth - bunkerMiddle.BunkerBottom.Length * 7;
+            positionBunkerRight = Console.WindowWidth - bunkerRight.BunkerBottom.Length * 2;
+
         }
 
 
@@ -48,18 +66,23 @@ namespace Spicy_Invader
         /// </summary>
         public void DrawGame()
         {
+            CalculatePositionBunker();
             
+            bunkerLeft = new Bunker(positionOnX: positionBunkerLeft, positionOnY: Console.WindowHeight - 10);
+            bunkerMiddle = new Bunker(positionOnX: positionBunkerMiddle, positionOnY: Console.WindowHeight - 10);
+            bunkerRight = new Bunker(positionOnX: positionBunkerRight, positionOnY: Console.WindowHeight - 10);
+
             //Affiche le vaisseau du joueur
             playerSpaceShip.Draw();
 
             //Affiche les bunkers
             bunkerLeft.DrawBunker();
-            bunkerCenter.DrawBunker();
+            bunkerMiddle.DrawBunker();
             bunkerRight.DrawBunker();
 
             //Ajoute les bunkers à la liste des objet du jeu
             SimpleObject.gameObjects.Add(bunkerLeft);
-            SimpleObject.gameObjects.Add(bunkerCenter);
+            SimpleObject.gameObjects.Add(bunkerMiddle);
             SimpleObject.gameObjects.Add(bunkerRight);
         }
 
