@@ -1,7 +1,7 @@
 ﻿///Auteur: Joël Pittet
-///Date: 19.04.2024
+///Date: 29.04.2024
 ///Lieu: Lausanne - ETML
-///Description: Classe qui contient les méthodes et attributs concernant les vaisseaux du jeu
+///Description: Classe qui contient les méthodes et attributs concernant le vaisseau du joueur
 
 using Microsoft.Win32.SafeHandles;
 using System;
@@ -15,8 +15,7 @@ using System.Windows.Input;
 
 namespace Spicy_Invader
 {
-    
-    internal class SpaceShip : SimpleObject
+    internal class PlayerSpaceShip : SpaceShip
     {
 
         /// <summary>
@@ -35,16 +34,16 @@ namespace Spicy_Invader
         private int _maxPosLeft;
 
         //Missile pour que le joueur puisse tirer avec le vaisseau
-        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives:0, shape:"mm");
+        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives: 0, shape: "mm");
 
         /// <summary>
         /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
         /// </summary>
         /// <param name="positionOnX">Position sur l'axe X</param>
-        /// <param name="positionOnY">Position sur l'axe </param>
+        /// <param name="positionOnY">Position sur l'axe Y</param>
         /// <param name="nbLives">Nombre de vies</param>
         /// <param name="spaceShipShape">Forme du vaisseau</param>
-        public SpaceShip(int positionOnX, int positionOnY, int nbLives, string spaceShipShape)
+        public PlayerSpaceShip(int positionOnX, int positionOnY, int nbLives, string spaceShipShape) : base(positionOnX, positionOnY, nbLives, spaceShipShape)
         {
             PositionOnX = positionOnX;
             PositionOnY = positionOnY;
@@ -99,37 +98,5 @@ namespace Spicy_Invader
             }
 
         }
-
-        /// <summary>
-        /// Tir du missile
-        /// </summary>
-        public void Shoot()
-        {
-            //Nouveau missile chaque fois que le nombre de vie est à zéro
-            if (missile.NumberOfLives == 0)
-            {
-                //Donne les propriétés au missile
-                missile = new Missile(positionOnX: PositionOnX + ObjectShape.Length / 2, positionOnY: PositionOnY - 1, numberOfLives: 1, shape: "|");
-
-                //Ajoute le missile aux objets du jeu
-                gameObjects.Add(missile);
-
-            }
-
-        }
-
-        /// <summary>
-        /// Efface l'ancienne position du missile
-        /// </summary>
-        public void ClearSpaceShip()
-        {
-            //Place le curseur à la position du vaisseau pour l'effacer
-            Console.SetCursorPosition(PositionOnX, PositionOnY);
-
-            //Affiche un espace pour cacher l'ancienne position du vaisseau
-            Console.WriteLine("       ");
-
-        }
-
     }
 }

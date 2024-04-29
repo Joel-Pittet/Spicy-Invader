@@ -17,67 +17,67 @@ namespace Spicy_Invader
         /// <summary>
         /// Etage supérieur du bunker
         /// </summary>
-        private string _bunkerTop = ("XXXXX");
+        private string _topFloor = ("XXXXX");
 
         /// <summary>
         /// GETTER / SETTER
         /// Etage supérieur du bunker
         /// </summary>
-        public string BunkerTop
+        public string TopFloor
         {
             get
             {
-                return _bunkerTop;
+                return _topFloor;
             }
             set
             {
-                _bunkerTop = value;
+                _topFloor = value;
             }
         }
 
         /// <summary>
         /// Etage du milieu du bunker
         /// </summary>
-        private string _bunkerMiddle = ("XXXXXXX");
+        private string _middleFloor = ("XXXXXXX");
 
         /// <summary>
         /// GETTER / SETTER
         /// Etage du milieu du bunker
         /// </summary>
-        public string BunkerMiddle
+        public string MiddleFloor
         {
             get
             {
-                return _bunkerMiddle;
+                return _middleFloor;
             }
             set
             {
-                _bunkerMiddle = value;
+                _middleFloor = value;
             }
         }
 
         /// <summary>
         /// Etage inférieur du bunker
         /// </summary>
-        private string _bunkerBottom = ("XXXXXXXXX");
+        private string _bottomFloor = ("XXXXXXXXX");
 
         /// <summary>
         /// GETTER / SETTER
         /// Etage inférieur du bunker
         /// </summary>
-        public string BunkerBottom
+        public string BottomFloor
         {
             get
             {
-                return _bunkerBottom;
+                return _bottomFloor;
             }
             set
             {
-                _bunkerBottom = value;
+                _bottomFloor = value;
             }
         }
 
-
+       
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -90,7 +90,7 @@ namespace Spicy_Invader
         }
 
         /// <summary>
-        /// Dessine le bunker
+        /// Dessine un bunker sur la console
         /// </summary>
         public void DrawBunker()
         {
@@ -102,58 +102,18 @@ namespace Spicy_Invader
             {
                 if (i == 0)
                 {
-
-                    //Parcourt l'étage supérieur du bunker et affiche chaque caractère les un apres les autres
-                    //Ajoute leurs position dans un tuple cela sert à gérer les colisions
-                    for (int j = 0; j < _bunkerTop.Length; j++)
-                    {
-                        
-                        //Position du caractère à ecrire
-                        Console.SetCursorPosition(PositionOnX, PositionOnY);
-
-                        //Ajoute la position du caractère dans le tuple
-                        ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
-
-                        //Ecrit un "X" du bunker
-                        Console.Write(_bunkerTop[j]);
-
-                        //Place le prochain caractère à coté de celui écrit
-                        PositionOnX++;
-
-                    }
-
-                    //Remet la position au dernier caractère de l'étage
-                    PositionOnX--;
+                    DrawBunkerFloor(_topFloor);
                 }
-                
                 else if (i == 1)
                 {
                     //Descend le curseur de 1 pour afficher le niveau suivant en dessous du précédent
                     PositionOnY++;
 
                     //Remet la position sur X un cran avant le dernier etage (effet pyramide)
-                    PositionOnX = PositionOnX - _bunkerTop.Length;
+                    PositionOnX = PositionOnX - _topFloor.Length;
 
-                    // Ajouter les positions des "X" dans bunkerMiddle à la liste
-                    for (int j = 0; j < _bunkerMiddle.Length; j++)
-                    {
+                    DrawBunkerFloor(_middleFloor);
 
-                        //Position du caractère
-                        Console.SetCursorPosition(PositionOnX, PositionOnY);
-
-                        //Ajoute la position du caractère dans le tuple
-                        ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
-
-                        //Ecrit un "X" du bunker
-                        Console.Write(_bunkerMiddle[j]);
-
-                        //Place le prochain caractère à coté de celui écrit
-                        PositionOnX++;
-
-                    }
-
-                    //Remet la position au dernier caractère de l'étage
-                    PositionOnX--;
                 }
                 else if (i == 2)
                 {
@@ -161,27 +121,44 @@ namespace Spicy_Invader
                     PositionOnY++;
 
                     //Décale de 1 l'apparition de l'étage suivant pour un effet pyramide
-                    PositionOnX = PositionOnX - _bunkerMiddle.Length;
+                    PositionOnX = PositionOnX - _middleFloor.Length;
 
-                    // Ajouter les positions des "X" dans bunkerBottom à la liste
-                    for (int j = 0; j < _bunkerBottom.Length; j++)
-                    {
-                        //Place le curseur pour afficher le carctère
-                        Console.SetCursorPosition(PositionOnX, PositionOnY);
-
-                        //Ajoute la position du caractère dans le tuple
-                        ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
-
-                        //Dessine le bas des bunkers
-                        Console.Write(_bunkerBottom[j]);
-
-                        //Place le prochain caractère à coté de celui écrit
-                        PositionOnX++;
-                    }
+                    DrawBunkerFloor(_bottomFloor);
                 }
             }
 
         }
+
+        /// <summary>
+        /// Affiche un étage du bunker passé en paramètre
+        /// </summary>
+        /// <param name="bunkerFloor">Etage du bunker à afficher</param>
+        public void DrawBunkerFloor(string bunkerFloor)
+        {
+            //Parcourt l'étage supérieur du bunker et affiche chaque caractère les un apres les autres
+            //Ajoute leurs position dans un tuple cela sert à gérer les colisions
+            for (int j = 0; j < bunkerFloor.Length; j++)
+            {
+
+                //Position du caractère à ecrire
+                Console.SetCursorPosition(PositionOnX, PositionOnY);
+
+                //Ajoute la position du caractère dans le tuple
+                ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
+
+                //Ecrit un "X" du bunker
+                Console.Write(bunkerFloor[j]);
+
+                //Place le prochain caractère à coté de celui écrit
+                PositionOnX++;
+
+            }
+
+            //Remet la position au dernier caractère de l'étage
+            PositionOnX--;
+        }
+
+        
 
         public override void Update()
         {

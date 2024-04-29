@@ -91,10 +91,8 @@ namespace Spicy_Invader
         /// <returns>TRUE si le bunker à été touché</returns>
         public bool CheckColisionWithBunker()
         {
+            //True si une partie du bunker à été touchée
             bool hasTouched = false;
-
-            //Sert de remplaçant pour le tuple touché par le missile
-            Tuple<int, int> test = new Tuple<int, int>(0, 0);
 
             //Colision avec les bunkers
             foreach (var bunker in SimpleObject.gameObjects.OfType<Bunker>())
@@ -108,7 +106,7 @@ namespace Spicy_Invader
                     {
                         hasTouched = true;
 
-                        bunker.ObjectToTouchPositions[i] = test;
+                        bunker.ObjectToTouchPositions.Remove(bunker.ObjectToTouchPositions[i]);
 
                         return hasTouched;
 

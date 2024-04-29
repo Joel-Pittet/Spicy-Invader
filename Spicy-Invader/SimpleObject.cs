@@ -100,11 +100,12 @@ namespace Spicy_Invader
         public override void Draw()
         {
             //Position de l'objet
-            Console.SetCursorPosition(PositionOnX, Convert.ToInt32(PositionOnY));
+            Console.SetCursorPosition(PositionOnX, PositionOnY);
 
             //Affiche l'objet
             Console.WriteLine(ObjectShape);
         }
+
 
         /// <summary>
         /// Verification de l'état - vivant / mort - des objets du jeu
@@ -131,7 +132,7 @@ namespace Spicy_Invader
         }
 
         /// <summary>
-        /// Crée une liste pour stocker les positions des "X"
+        /// Crée une liste pour stocker les positions des "X" des bunkers
         /// </summary>
         public List<Tuple<int, int>> ObjectToTouchPositions = new List<Tuple<int, int>>();
 

@@ -19,8 +19,9 @@ namespace Spicy_Invader
         [STAThread]
         static void Main(string[] args)
         {
-            //Empêche le scroll windows 10
+            //Bloque le scroll de la fenetre
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+
 
             //Instancie le menu principal
             Menu mainMenu = new Menu();
