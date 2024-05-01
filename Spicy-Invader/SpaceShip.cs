@@ -20,11 +20,6 @@ namespace Spicy_Invader
     {
 
         /// <summary>
-        /// Vitesse de déplacement du vaisseau
-        /// </summary>
-        //private int _spaceShipSpeed = 20;
-
-        /// <summary>
         /// Enplacement maximum du vaisseau sur la droite de la fenêtre
         /// </summary>
         private int _maxPosRight;
@@ -32,13 +27,13 @@ namespace Spicy_Invader
         /// <summary>
         /// Enplacement maximum du vaisseau sur la gauche de la fenêtre
         /// </summary>
-        private int _maxPosLeft;
+        private int _maxPosLeft = 0;
 
         //Missile pour que le joueur puisse tirer avec le vaisseau
-        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives:0, shape:"mm");
+        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives:0, shape:"");
 
         /// <summary>
-        /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
+        /// Constructeur avec position sur l'axe X et Y, nombre de vies et forme du vaisseau
         /// </summary>
         /// <param name="positionOnX">Position sur l'axe X</param>
         /// <param name="positionOnY">Position sur l'axe </param>
@@ -50,58 +45,22 @@ namespace Spicy_Invader
             PositionOnY = positionOnY;
             NumberOfLives = nbLives;
             ObjectShape = spaceShipShape;
-            _maxPosLeft = spaceShipShape.Length - spaceShipShape.Length - 1;
-            _maxPosRight = Console.WindowWidth - spaceShipShape.Length + 2;
+            _maxPosRight = Console.WindowWidth - spaceShipShape.Length + 1;
 
             //Ajoute le vaisseau à la liste des objets du jeu
             gameObjects.Add(this);
         }
 
         /// <summary>
-        /// Mise à jour de la position du vaisseau et tir du missile
+        /// Mise à jour de la position des vaisseaux ennemis
         /// </summary>
         public override void Update()
         {
 
-            //Lorsque la flèche de gauche est appuyée
-            if (Keyboard.IsKeyDown(Key.Left) && (PositionOnX - 1) != _maxPosLeft)
-            {
-                //efface l'ancienne position
-                ClearSpaceShip();
-
-                //Change la position du vaisseau de 1 à gauche
-                PositionOnX--;
-
-                //Dessine le vaisseau
-                Draw();
-
-            }
-
-            // Lorsque la flèche de droite est appuyée
-            if (Keyboard.IsKeyDown(Key.Right) && (PositionOnX + 1) != _maxPosRight)
-            {
-                //efface l'ancienne position
-                ClearSpaceShip();
-
-                //Change la position du vaisseau de 1 à droite
-                PositionOnX++;
-
-                //Dessine le vaisseau
-                Draw();
-
-            }
-
-            //Tir un missile si la barre espace est enfoncée
-            if (Keyboard.IsKeyDown(Key.Space))
-            {
-                //Tir
-                Shoot();
-            }
-
         }
 
         /// <summary>
-        /// Tir du missile
+        /// Tir du missile ennemi
         /// </summary>
         public void Shoot()
         {
@@ -126,7 +85,7 @@ namespace Spicy_Invader
             //Place le curseur à la position du vaisseau pour l'effacer
             Console.SetCursorPosition(PositionOnX, PositionOnY);
 
-            //Affiche un espace pour cacher l'ancienne position du vaisseau
+            //Affiche des espaces pour cacher l'ancienne position du vaisseau
             Console.WriteLine("       ");
 
         }

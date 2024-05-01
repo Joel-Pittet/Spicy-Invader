@@ -19,11 +19,6 @@ namespace Spicy_Invader
     {
 
         /// <summary>
-        /// Vitesse de déplacement du vaisseau
-        /// </summary>
-        //private int _spaceShipSpeed = 20;
-
-        /// <summary>
         /// Enplacement maximum du vaisseau sur la droite de la fenêtre
         /// </summary>
         private int _maxPosRight;
@@ -31,26 +26,25 @@ namespace Spicy_Invader
         /// <summary>
         /// Enplacement maximum du vaisseau sur la gauche de la fenêtre
         /// </summary>
-        private int _maxPosLeft;
+        private int _maxPosLeft = 0;
 
         //Missile pour que le joueur puisse tirer avec le vaisseau
-        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives: 0, shape: "mm");
+        Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives: 0, shape: "");
 
         /// <summary>
-        /// Constructeur avec position sur l'axe X, nombre de vies et forme du vaisseau
+        /// Constructeur avec position sur l'axe X et Y, nombre de vies et forme du vaisseau
         /// </summary>
         /// <param name="positionOnX">Position sur l'axe X</param>
         /// <param name="positionOnY">Position sur l'axe Y</param>
         /// <param name="nbLives">Nombre de vies</param>
-        /// <param name="spaceShipShape">Forme du vaisseau</param>
-        public PlayerSpaceShip(int positionOnX, int positionOnY, int nbLives, string spaceShipShape) : base(positionOnX, positionOnY, nbLives, spaceShipShape)
+        /// <param name="SpaceShipShape">Forme du vaisseau</param>
+        public PlayerSpaceShip(int positionOnX, int positionOnY, int nbLives, string SpaceShipShape) : base(positionOnX, positionOnY, nbLives, SpaceShipShape)
         {
             PositionOnX = positionOnX;
             PositionOnY = positionOnY;
             NumberOfLives = nbLives;
-            ObjectShape = spaceShipShape;
-            _maxPosLeft = spaceShipShape.Length - spaceShipShape.Length - 1;
-            _maxPosRight = Console.WindowWidth - spaceShipShape.Length + 2;
+            ObjectShape = SpaceShipShape;
+            _maxPosRight = Console.WindowWidth - SpaceShipShape.Length + 1;
 
             //Ajoute le vaisseau à la liste des objets du jeu
             gameObjects.Add(this);

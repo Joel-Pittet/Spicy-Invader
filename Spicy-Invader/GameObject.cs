@@ -30,11 +30,5 @@ namespace Spicy_Invader
         /// </summary>
         public abstract void Update();
 
-        /// <summary>
-        /// Gère la colision entre le missile et les objets du jeu
-        /// </summary>
-        /// <param name="missile">Missile</param>
-        public abstract void Collision(Missile missile);
-
     }
 }

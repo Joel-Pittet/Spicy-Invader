@@ -123,15 +123,6 @@ namespace Spicy_Invader
         }
 
         /// <summary>
-        /// Gère les colisions entre le missile et les objets du jeu
-        /// </summary>
-        /// <param name="missile">Missile</param>
-        public override void Collision(Missile missile)
-        {
-             
-        }
-
-        /// <summary>
         /// Crée une liste pour stocker les positions des "X" des bunkers
         /// </summary>
         public List<Tuple<int, int>> ObjectToTouchPositions = new List<Tuple<int, int>>();

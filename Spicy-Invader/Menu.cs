@@ -110,14 +110,14 @@ namespace Spicy_Invader
                 //Dans le cas ou la flèche du haut est pressée et que l'option selectionnée n'est pas la première
                 if (key.Key == ConsoleKey.UpArrow && selectedOption != 0)
                 {
-                    selectedOption = selectedOption - 1;
+                    selectedOption--;
                     DrawMenu();
                     break;
                 }
                 //Dans le cas ou la flèche du bas est pressée et que l'option seléctionnée n'est pas la dernière
                 else if (key.Key == ConsoleKey.DownArrow && selectedOption != listMenuEntries.Count - 1)
                 {
-                    selectedOption = selectedOption + 1;
+                    selectedOption++;
                     DrawMenu();
                     break;
 

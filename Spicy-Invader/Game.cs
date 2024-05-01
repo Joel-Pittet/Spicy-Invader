@@ -9,9 +9,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Spicy_Invader
 {
@@ -21,7 +23,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Vitesse du jeu
         /// </summary>
-        private const int _GAME_SPEED = 30;
+        private const int _GAME_SPEED = 35;
 
         /// <summary>
         /// Nombre de bunker dans le jeu
@@ -58,7 +60,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Crée le vaisseau du joueur
         /// </summary>
-        PlayerSpaceShip playerSpaceShip = new PlayerSpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight - 4, nbLives: 3 ,spaceShipShape: "---|---");
+        PlayerSpaceShip playerSpaceShip = new PlayerSpaceShip(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight - 4, nbLives: 3 ,SpaceShipShape: "---|---");
 
         /// <summary>
         /// Bunker de gauche
@@ -81,39 +83,39 @@ namespace Spicy_Invader
         Bunker bunkerRight = new Bunker(positionOnX: 0, positionOnY: 0);
 
         /// <summary>
+        /// Bloc d'ennemi
+        /// </summary>
+        EnnemyBlock ennemyBlock = new EnnemyBlock(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight - (Console.WindowHeight / 3) * 3, size: new Size(Console.WindowWidth / 3, Console.WindowHeight / 3));
+
+        /// <summary>
         /// Calcule la position des bunker par rapport à la fenetre
         /// </summary>
         public void CalculatePositionBunker(int nbBunkers)
         {
             //Calcule l'espace à laisser entre les bunkers
-            int gapBeforeDivision = Console.WindowWidth - _NB_BUNKER * bunkerLeft.BottomFloor.Length;
-
-            int gapbetweenBunker = gapBeforeDivision / (_NB_BUNKER + 1);
-
-            //Nombre de bunker maximum pouvant etre afficher sur la console
-            int nbBunkerMax = Console.WindowWidth / bunkerLeft.BottomFloor.Length;
+            int gapBetweenBunkers = (Console.WindowWidth - (_NB_BUNKER * bunkerLeft.BottomFloor.Length)) / (_NB_BUNKER + 1);
 
             for (int i = 1; i <= nbBunkers; i++)
             {
 
                 if (i == 1)
                 {
-                    _positionBunkerRight = (Console.WindowWidth - gapbetweenBunker * i) - (bunkerLeft.BottomFloor.Length * i);
+                    _positionBunkerRight = (Console.WindowWidth - gapBetweenBunkers * i) - (bunkerLeft.BottomFloor.Length * i);
 
                 }
                 else if (i == 2)
                 {
 
-                    _positionBunkerMiddleLeft = (Console.WindowWidth - gapbetweenBunker * i) - (bunkerLeft.BottomFloor.Length * i);
+                    _positionBunkerMiddleLeft = (Console.WindowWidth - gapBetweenBunkers * i) - (bunkerLeft.BottomFloor.Length * i);
 
                 }
                 else if(i == 3)
                 {
-                    _positionBunkerMiddleRight = (Console.WindowWidth - gapbetweenBunker * i) - (bunkerLeft.BottomFloor.Length * i);
+                    _positionBunkerMiddleRight = (Console.WindowWidth - gapBetweenBunkers * i) - (bunkerLeft.BottomFloor.Length * i);
                 }
                 else
                 {
-                    _positionBunkerLeft = (Console.WindowWidth - gapbetweenBunker * i) - (bunkerLeft.BottomFloor.Length * i);
+                    _positionBunkerLeft = (Console.WindowWidth - gapBetweenBunkers * i) - (bunkerLeft.BottomFloor.Length * i);
                 }
 
             }
@@ -134,6 +136,7 @@ namespace Spicy_Invader
             bunkerMiddleRight = new Bunker(positionOnX: _positionBunkerMiddleRight, positionOnY: positionOnYBunkers);
             bunkerRight = new Bunker(positionOnX: _positionBunkerRight, positionOnY: positionOnYBunkers);
 
+            
             //Affiche le vaisseau du joueur
             playerSpaceShip.Draw();
 
@@ -142,6 +145,13 @@ namespace Spicy_Invader
             bunkerMiddleRight.DrawBunker();
             bunkerMiddleLeft.DrawBunker();
             bunkerLeft.DrawBunker();
+
+            //Ajoute une ligne au bloc d'ennemi
+            ennemyBlock.AddLine(5, 3, ">|<");
+            ennemyBlock.AddLine(8, 3, "..&&..");
+
+            //Affiche le bloc d'ennemi
+            ennemyBlock.Draw();
 
             //Ajoute les bunkers à la liste des objet du jeu
             SimpleObject.gameObjects.Add(bunkerLeft);
