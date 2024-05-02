@@ -27,7 +27,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Enplacement maximum du vaisseau sur la gauche de la fenêtre
         /// </summary>
-        private int _maxPosLeft = 0;
+        //private int _maxPosLeft = 0;
 
         //Missile pour que le joueur puisse tirer avec le vaisseau
         Missile missile = new Missile(positionOnX: 0, positionOnY: 0, numberOfLives:0, shape:"");

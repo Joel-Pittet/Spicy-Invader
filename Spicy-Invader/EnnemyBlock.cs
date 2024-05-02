@@ -22,7 +22,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Largeur initial du bloc d'ennemi 
         /// </summary>
-        private int _baseWidth;
+        private double _baseWidth;
 
         /// <summary>
         /// Taille du bloc
@@ -102,7 +102,7 @@ namespace Spicy_Invader
             _positionOnX = positionOnX;
             _positionOnY = positionOnY;
             _size = size;
-            _size.Width = _baseWidth;
+            _baseWidth = _size.Width;
         }
 
         /// <summary>
@@ -113,19 +113,29 @@ namespace Spicy_Invader
         /// <param name="shipShape">Forme des ennemis</param>
         public void AddLine(int nbShips, int nbLives, string shipShape)
         {
+            //Nombre fois que le vaisseau peut etre dessiner sur la ligne
+            //double nbShipPossible = _baseWidth / shipShape.Length;
+
+            //Sépare la largeur du bloc pour voir à quelle distance placer les ennemi de façon homogène
+            double positionSpaceShip = _baseWidth / ((nbShips + 1) * shipShape.Length);
+
+           //double positionMiddleShip = positionSpaceShip - shipShape.Length / 2;
+
             // Ajout des nouveaux vaisseaux ennemis
             for (int i = 0; i < nbShips; i++)
             {
                 // Calcule la position sur l'axe X pour le nouveau vaisseau
-                int positionEnemyOnX = _positionOnX + (i * (shipShape.Length + 1));
+                double positionEnemyOnX = _positionOnX + (Convert.ToInt32(positionSpaceShip) * (i + 1));
+
+                double positionMiddleShip = positionEnemyOnX - shipShape.Length / 2;
 
                 // Crée et ajoute le vaisseau à l'ensemble
-                SpaceShip enemy = new SpaceShip(positionEnemyOnX, _positionOnY + _numberOfLines, nbLives, shipShape);
+                SpaceShip enemy = new SpaceShip(Convert.ToInt32(positionMiddleShip), _positionOnY + _numberOfLines, nbLives, shipShape);
                 _enemyShips.Add(enemy);
             }
 
             //Incremente le nombre de ligne du bloc
-            _numberOfLines++;
+            _numberOfLines = _numberOfLines + 2;
         }
     
 

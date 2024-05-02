@@ -148,7 +148,9 @@ namespace Spicy_Invader
 
             //Ajoute une ligne au bloc d'ennemi
             ennemyBlock.AddLine(5, 3, ">|<");
-            ennemyBlock.AddLine(8, 3, "..&&..");
+            ennemyBlock.AddLine(8, 3, "(<>..<>)");
+            ennemyBlock.AddLine(1000, 2, ".-=o=-.");
+            ennemyBlock.AddLine(2, 2, "MMooWW");
 
             //Affiche le bloc d'ennemi
             ennemyBlock.Draw();
