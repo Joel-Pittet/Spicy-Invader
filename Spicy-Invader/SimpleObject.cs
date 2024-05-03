@@ -127,10 +127,6 @@ namespace Spicy_Invader
         /// </summary>
         public List<Tuple<int, int>> ObjectToTouchPositions = new List<Tuple<int, int>>();
 
-        /// <summary>
-        /// Liste des objets du jeu
-        /// </summary>
-        public static List<SimpleObject> gameObjects = new List<SimpleObject>();
 
     }
 }

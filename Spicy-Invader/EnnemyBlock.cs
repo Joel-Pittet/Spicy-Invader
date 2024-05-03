@@ -113,29 +113,48 @@ namespace Spicy_Invader
         /// <param name="shipShape">Forme des ennemis</param>
         public void AddLine(int nbShips, int nbLives, string shipShape)
         {
-            //Nombre fois que le vaisseau peut etre dessiner sur la ligne
-            //double nbShipPossible = _baseWidth / shipShape.Length;
-
             //Sépare la largeur du bloc pour voir à quelle distance placer les ennemi de façon homogène
-            double positionSpaceShip = _baseWidth / ((nbShips + 1) * shipShape.Length);
+            double positionSpaceShip = _baseWidth / (nbShips + 1);
 
-           //double positionMiddleShip = positionSpaceShip - shipShape.Length / 2;
+            //Converti l'espace entre les vaisseaux pour qu'il reste équivalent indépendament du nombre de fois utilisé
+            int positionSpaceShipInInt = Convert.ToInt32(positionSpaceShip);
 
-            // Ajout des nouveaux vaisseaux ennemis
-            for (int i = 0; i < nbShips; i++)
+            //Evite qu'un trop grand nombre de vaisseau soit dessiner
+            //et que les vaisseau se dessine l'un par dessus l'autre
+            if (_positionOnX + (nbShips - 1) * shipShape.Length + nbShips * positionSpaceShip >= Console.WindowWidth)
             {
-                // Calcule la position sur l'axe X pour le nouveau vaisseau
-                double positionEnemyOnX = _positionOnX + (Convert.ToInt32(positionSpaceShip) * (i + 1));
+                do
+                {
+                    nbShips--;
 
-                double positionMiddleShip = positionEnemyOnX - shipShape.Length / 2;
+                    //Sépare la largeur du bloc pour voir à quelle distance placer les ennemi de façon homogène
+                    positionSpaceShip = _baseWidth / (nbShips + 1);
 
-                // Crée et ajoute le vaisseau à l'ensemble
-                SpaceShip enemy = new SpaceShip(Convert.ToInt32(positionMiddleShip), _positionOnY + _numberOfLines, nbLives, shipShape);
-                _enemyShips.Add(enemy);
+                    //Converti l'espace entre les vaisseaux pour qu'il reste équivalent indépendament du nombre de fois utilisé
+                    positionSpaceShipInInt = Convert.ToInt32(positionSpaceShip);
+
+                }while (_positionOnX + (nbShips - 1) * shipShape.Length + nbShips * positionSpaceShip >= Console.WindowWidth);
+                
             }
 
-            //Incremente le nombre de ligne du bloc
-            _numberOfLines = _numberOfLines + 2;
+            if(_positionOnX + (nbShips - 1) * shipShape.Length + nbShips * positionSpaceShip < Console.WindowWidth)
+            {
+                // Ajout des nouveaux vaisseaux ennemis
+                for (int i = 0; i < nbShips; i++)
+                {
+                    //Positionne chaque ennemi à sa place sur la ligne
+                    int shipPositionOnXJustify = _positionOnX + (positionSpaceShipInInt * (i + 1) - shipShape.Length / 2);
+
+                    //Crée et ajoute le vaisseau à l'ensemble
+                    SpaceShip enemy = new SpaceShip(shipPositionOnXJustify, _positionOnY + _numberOfLines, nbLives, shipShape);
+                    _enemyShips.Add(enemy);
+                }
+
+                //Incremente le nombre de ligne du bloc
+                _numberOfLines = _numberOfLines + 2;
+            }
+
+            
         }
     
 
@@ -153,11 +172,10 @@ namespace Spicy_Invader
         /// </summary>
         public override void Draw()
         {
-
             // Parcours tous les vaisseaux ennemis et dessine chaque vaisseau
             foreach (SpaceShip enemyShip in _enemyShips)
             {
-                enemyShip.Draw();
+                enemyShip.DrawAndStockPositions();
             }
         }
 
@@ -166,7 +184,10 @@ namespace Spicy_Invader
         /// </summary>
         public override void Update()
         {
-            
+            foreach (SpaceShip _enemyShip in _enemyShips)
+            {
+                _enemyShip.Update();
+            }
         }
 
         /// <summary>

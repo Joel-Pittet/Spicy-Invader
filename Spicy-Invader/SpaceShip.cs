@@ -22,7 +22,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Enplacement maximum du vaisseau sur la droite de la fenêtre
         /// </summary>
-        private int _maxPosRight;
+        private int _maxPosRight = Console.WindowWidth;
 
         /// <summary>
         /// Enplacement maximum du vaisseau sur la gauche de la fenêtre
@@ -56,6 +56,40 @@ namespace Spicy_Invader
         /// </summary>
         public override void Update()
         {
+            List<Tuple<int,int>> copyObjectToTouchePosition = new List<Tuple<int,int>>(ObjectToTouchPositions);
+
+            //Controle chaque caractère s'il touche le bord de la fenetre
+            foreach (Tuple<int, int> enemyCharPositions in copyObjectToTouchePosition)
+            {
+                if (enemyCharPositions.Item1 == Console.WindowWidth)
+                {
+                    //Efface le vaisseau
+                    ClearSpaceShip();
+
+                    //Descend le vaisseau
+                    PositionOnY++;
+
+                    //Reaffiche le vaisseau et stock sa position
+                    DrawAndStockPositions();
+                }
+                else
+                {
+                    //Efface le vaisseau
+                    ClearSpaceShip();
+
+                    //Descend le vaisseau
+                    PositionOnX++;
+
+                    //Reaffiche le vaisseau et stock sa position
+                    DrawAndStockPositions();
+                }
+            }
+
+            if (PositionOnX >= Console.WindowWidth)
+            {
+
+            }
+
 
         }
 
@@ -82,13 +116,46 @@ namespace Spicy_Invader
         /// </summary>
         public void ClearSpaceShip()
         {
+            
             //Place le curseur à la position du vaisseau pour l'effacer
             Console.SetCursorPosition(PositionOnX, PositionOnY);
 
-            //Affiche des espaces pour cacher l'ancienne position du vaisseau
-            Console.WriteLine("       ");
+            //Crée une variable pour effacer la bonne taille de vaisseau
+            string clearShape = "";
 
+            //Affiche des espaces pour cacher l'ancienne position du vaisseau
+            foreach (char shapePieces in ObjectShape)
+            {
+                clearShape += " ";
+            }
+
+            Console.WriteLine(clearShape);
+    
         }
 
+        /// <summary>
+        /// Affiche l'ennemi et stocks chaque position de chaque caractère
+        /// </summary>
+        public void DrawAndStockPositions()
+        { 
+            //Réinitialise la liste pour stocker les nouvelles positions des ennemis
+            ObjectToTouchPositions = new List<Tuple<int, int>>();
+
+            foreach (char pieceOfEnemy in ObjectShape)
+            {
+                //Position du caractère à ecrire
+                Console.SetCursorPosition(PositionOnX, PositionOnY);
+
+                //Ajoute la position du caractère dans le tuple
+                ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
+
+                //Ecrit un caractère de l'ennemi
+                Console.Write(pieceOfEnemy);
+
+                //Place le prochain caractère à coté de celui écrit
+                PositionOnX++;
+            }
+
+        }
     }
 }
