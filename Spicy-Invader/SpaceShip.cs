@@ -51,6 +51,7 @@ namespace Spicy_Invader
             gameObjects.Add(this);
         }
 
+        /*
         /// <summary>
         /// Mise à jour de la position des vaisseaux ennemis
         /// </summary>
@@ -91,12 +92,16 @@ namespace Spicy_Invader
             }
 
 
+        }*/
+
+        public override void Update()
+        {
         }
 
-        /// <summary>
-        /// Tir du missile ennemi
-        /// </summary>
-        public void Shoot()
+            /// <summary>
+            /// Tir du missile ennemi
+            /// </summary>
+            public void Shoot()
         {
             //Nouveau missile chaque fois que le nombre de vie est à zéro
             if (missile.NumberOfLives == 0)
@@ -139,7 +144,7 @@ namespace Spicy_Invader
         public void DrawAndStockPositions()
         { 
             //Réinitialise la liste pour stocker les nouvelles positions des ennemis
-            ObjectToTouchPositions = new List<Tuple<int, int>>();
+            //ObjectToTouchPositions = new List<Tuple<int, int>>();
 
             foreach (char pieceOfEnemy in ObjectShape)
             {

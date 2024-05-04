@@ -153,16 +153,16 @@ namespace Spicy_Invader
             GameObject.gameObjects.Add(bunkerRight);
 
             //Ajoute une ligne au bloc d'ennemi
-            ennemyBlock.AddLine(10, 3, ">|<");
+            ennemyBlock.AddLine(5, 3, ">|<");
             //ennemyBlock.AddLine(6, 3, "(<>..<>)");
-            //ennemyBlock.AddLine(6, 2, ".-=o=-.");
+            ennemyBlock.AddLine(8, 2, ".-=o=-.");
             //ennemyBlock.AddLine(2, 2, "MMooWW");
 
             //Affiche le bloc d'ennemi
             ennemyBlock.Draw();
 
             //Ajoute le bloc d'ennemi à la liste des objets du jeu
-            GameObject.gameObjects.Add(ennemyBlock);
+            //GameObject.gameObjects.Add(ennemyBlock);
 
         }
 
