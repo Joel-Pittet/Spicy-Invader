@@ -60,7 +60,7 @@ namespace Spicy_Invader
             if (Keyboard.IsKeyDown(Key.Left) && (PositionOnX - 1) != _maxPosLeft)
             {
                 //efface l'ancienne position
-                ClearSpaceShip();
+                Clear();
 
                 //Change la position du vaisseau de 1 à gauche
                 PositionOnX--;
@@ -74,7 +74,7 @@ namespace Spicy_Invader
             if (Keyboard.IsKeyDown(Key.Right) && (PositionOnX + 1) != _maxPosRight)
             {
                 //efface l'ancienne position
-                ClearSpaceShip();
+                Clear();
 
                 //Change la position du vaisseau de 1 à droite
                 PositionOnX++;

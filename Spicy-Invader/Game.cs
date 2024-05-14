@@ -83,9 +83,15 @@ namespace Spicy_Invader
         Bunker bunkerRight = new Bunker(positionOnX: 0, positionOnY: 0);
 
         /// <summary>
-        /// Bloc d'ennemi
+        /// Ligne d'ennemi
         /// </summary>
-        EnnemyBlock ennemyBlock = new EnnemyBlock(positionOnX: Console.WindowWidth / 2, positionOnY: Console.WindowHeight - Console.WindowHeight , size: new Size(Console.WindowWidth / 2, Console.WindowHeight / 3));
+        static EnemyLine firstLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 0);
+        static EnemyLine secondLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 1);
+        static EnemyLine thirdLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 2);
+        static EnemyLine fourthLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 3);
+
+
+        EnemyBlock block = new EnemyBlock(first: firstLine, second: secondLine, third: thirdLine, fourth: fourthLine);
 
         /// <summary>
         /// Calcule la position des bunker par rapport à la fenetre
@@ -152,18 +158,15 @@ namespace Spicy_Invader
             GameObject.gameObjects.Add(bunkerMiddleRight);
             GameObject.gameObjects.Add(bunkerRight);
 
-            //Ajoute une ligne au bloc d'ennemi
-            ennemyBlock.AddLine(5, 3, ">|<");
-            //ennemyBlock.AddLine(6, 3, "(<>..<>)");
-            ennemyBlock.AddLine(3, 2, ".-=o=-.");
-            //ennemyBlock.AddLine(2, 2, "MMooWW");
+            //Ajoute les vaisseau ennemis à la ligne
+            firstLine.AddEnemies();
+            secondLine.AddEnemies();
+            thirdLine.AddEnemies();
 
-            //Affiche le bloc d'ennemi
-            ennemyBlock.Draw();
-
-            //Ajoute le bloc d'ennemi à la liste des objets du jeu
-            //GameObject.gameObjects.Add(ennemyBlock);
-
+            //Affiche la ligne d'ennemi
+            firstLine.DrawLine();
+            secondLine.DrawLine();
+            thirdLine.DrawLine();
         }
 
         /// <summary>
