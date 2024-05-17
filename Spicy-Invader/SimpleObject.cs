@@ -125,7 +125,7 @@ namespace Spicy_Invader
         /// <summary>
         /// Crée une liste pour stocker les positions des "X" des bunkers
         /// </summary>
-        public List<Tuple<int, int>> ObjectToTouchPositions = new List<Tuple<int, int>>();
+        public List<Tuple<int, int>> charBunkerPositions = new List<Tuple<int, int>>();
 
 
     }

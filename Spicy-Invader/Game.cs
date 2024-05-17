@@ -83,14 +83,16 @@ namespace Spicy_Invader
         Bunker bunkerRight = new Bunker(positionOnX: 0, positionOnY: 0);
 
         /// <summary>
-        /// Ligne d'ennemi
+        /// Ligne d'ennemis
         /// </summary>
         static EnemyLine firstLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 0);
         static EnemyLine secondLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 1);
         static EnemyLine thirdLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 2);
         static EnemyLine fourthLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 3);
 
-
+        /// <summary>
+        /// Block d'ennemis
+        /// </summary>
         EnemyBlock block = new EnemyBlock(first: firstLine, second: secondLine, third: thirdLine, fourth: fourthLine);
 
         /// <summary>

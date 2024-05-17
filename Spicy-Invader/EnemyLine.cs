@@ -26,6 +26,22 @@ namespace Spicy_Invader
         private List<SpaceShip> _enemies = new List<SpaceShip>();
 
         /// <summary>
+        /// GETTER / SETTER
+        /// Liste d'ennemi
+        /// </summary>
+        public List<SpaceShip> Enemies
+        {
+            get
+            {
+                return _enemies;
+            }
+            set
+            {
+                _enemies = value;
+            }
+        }
+
+        /// <summary>
         /// Position des ennemi, le premier au milieu de la console
         /// </summary>
         private int _posEnemyOnXInLine = Console.WindowWidth / 2;
@@ -57,6 +73,27 @@ namespace Spicy_Invader
         private bool _hasEnemyZeroChangedSide = false;
 
         /// <summary>
+        /// Position de chaque caractère des ennemis de la ligne
+        /// </summary>
+        private List<List<Tuple<int,int>>> _charsOfEnemiesLine = new List<List<Tuple<int,int>>>();
+
+        /// <summary>
+        /// GETTER / SETTER
+        /// Position de chaque caractère des ennemis de la ligne
+        /// </summary>
+        public List<List<Tuple<int, int>>> CharsOfEnemiesLine
+        {
+            get
+            {
+                return _charsOfEnemiesLine;
+            }
+            set
+            {
+                _charsOfEnemiesLine = value;
+            }
+        }
+
+        /// <summary>
         /// Constructeur
         /// </summary>
         /// <param name="nbEnemies">nombre d'ennemi sur la ligne</param>
@@ -84,13 +121,20 @@ namespace Spicy_Invader
         }
 
         /// <summary>
-        /// Affiche les ennemis de la ligne sur la console
+        /// Affiche les ennemis de la ligne sur la console au début du jeu
+        /// Stocke les positions de chaque caractère de chaque ennemis
         /// </summary>
         public void DrawLine()
         {
             foreach (SpaceShip enemy in _enemies)
             {
-                enemy.Draw();
+                enemy.DrawAndStockPositions();
+
+                //Reset la liste
+                _charsOfEnemiesLine = new List<List<Tuple<int, int>>>();
+
+                //Ajoute les positions à la liste
+                _charsOfEnemiesLine.Add(enemy.EveryCharOfSpaceShip);
             }
         }
 
@@ -122,6 +166,9 @@ namespace Spicy_Invader
         /// </summary>
         public void MoveLine()
         {
+            //Reset la liste des positions des caractère des ennemis
+            _charsOfEnemiesLine = new List<List<Tuple<int, int>>>();
+
             //Si le bord gauche à été touché par l'ennemi tout à gauche alors lui rajoute une position,
             //sinon l'espacement grandi à chaque fois qu'il touche le bord gauche
             if (_hasEnemyZeroChangedSide)
@@ -133,12 +180,14 @@ namespace Spicy_Invader
             //Met à jour la position de tous les ennemis, gère les limites déplacement pour pas qu'il sortent de l^écran
             foreach (SpaceShip enemy in _enemies)
             {
+                //Limite droite
                 if (_enemies[_enemies.Count - 1].PositionOnX + enemy.ObjectShape.Length >= Console.WindowWidth && !_hasChangedDirection)
                 {
                     _hasTouchedSide = true;
                     break;
 
                 }
+                //Limite gauche
                 else if (_enemies[0].PositionOnX <= _limitLeftConsole && !_hasChangedDirection)
                 {
                     _hasTouchedSide = true;
@@ -148,8 +197,9 @@ namespace Spicy_Invader
 
                 enemy.Update();
 
-            }
+                _charsOfEnemiesLine.Add(enemy.EveryCharOfSpaceShip);
 
+            }
         }
 
         /// <summary>

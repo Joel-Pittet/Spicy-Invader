@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spicy_Invader.GameObject">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Bunker" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAACAAQEAEAAACAAAAAAAAEAACAAAAAA=</HashCode>
+      <FileName>Bunker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.EnemyBlock" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAIBAAAAAAAAABAAIAAAAAAAQAAIAAAA=</HashCode>
+      <FileName>EnemyBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.EnemyLine">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAASAQCAQAAAIAQAAACAAAAAAAAEAACAgAAAA=</HashCode>
+      <FileName>EnemyLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Game" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAgACRAAABFIAAAAIgAEAJJAAAAAAABgAAJAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Menu">
+    <Position X="11.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Missile">
+    <Position X="9" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Missile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.PlayerSpaceShip">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayerSpaceShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.Program">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.SimpleObject">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAIAAAAAoAkAAAQAAAAAAAAAACAABAAAAAAIAAAA=</HashCode>
+      <FileName>SimpleObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spicy_Invader.SpaceShip">
+    <Position X="5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAAIAABAAAAAAAAAAAAAAAAAAAAAAgAEBAAAA=</HashCode>
+      <FileName>SpaceShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

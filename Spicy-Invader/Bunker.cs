@@ -144,7 +144,7 @@ namespace Spicy_Invader
                 Console.SetCursorPosition(PositionOnX, PositionOnY);
 
                 //Ajoute la position du caractère dans le tuple
-                ObjectToTouchPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
+                charBunkerPositions.Add(new Tuple<int, int>(PositionOnX, PositionOnY));
 
                 //Ecrit un "X" du bunker
                 Console.Write(bunkerFloor[j]);

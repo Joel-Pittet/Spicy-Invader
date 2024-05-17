@@ -43,9 +43,12 @@ namespace Spicy_Invader
         public override void Update()
         {
             //Vérifie si un bunker à été touché
-            bool hasTouched = CheckColisionWithBunker();
+            bool hasTouchedBunker = CheckColisionWithBunker();
 
-            if (hasTouched == true)
+            //Vérifie si un ennemi à été touché
+            bool hasTouchedEnemy = CheckColisionWithEnemies();
+
+            if (hasTouchedBunker || hasTouchedEnemy)
             {
 
                 //Efface le missile
@@ -55,7 +58,7 @@ namespace Spicy_Invader
                 NumberOfLives = 0;
    
             }
-            else if (hasTouched == false && PositionOnY - 1 >= 0)
+            else if (hasTouchedBunker == false && hasTouchedEnemy == false && PositionOnY - 1 >= 0)
             {
                 //Efface la position précédente du missile
                 ClearMissile();
@@ -66,7 +69,7 @@ namespace Spicy_Invader
                 //Dessine le missile
                 Draw();
 
-            }else if (hasTouched == false && PositionOnY - 1 < 0)
+            }else if (hasTouchedBunker == false && hasTouchedEnemy == false && PositionOnY - 1 < 0)
             {
                 //Efface le missile
                 ClearMissile();
@@ -95,18 +98,17 @@ namespace Spicy_Invader
             bool hasTouched = false;
 
             //Colision avec les bunkers
-            foreach (var bunker in SimpleObject.gameObjects.OfType<Bunker>())
+            foreach (Bunker bunker in gameObjects.OfType<Bunker>())
             {
-
-                for (int i = 0; i < bunker.ObjectToTouchPositions.Count; i++)
+                for (int i = 0; i < bunker.charBunkerPositions.Count; i++)
                 {
 
                     // Vérifie si le missile entre en collision avec une position de bunker
-                    if (PositionOnX == bunker.ObjectToTouchPositions[i].Item1 && PositionOnY == bunker.ObjectToTouchPositions[i].Item2 && !hasTouched)
+                    if (PositionOnX == bunker.charBunkerPositions[i].Item1 && PositionOnY == bunker.charBunkerPositions[i].Item2 && !hasTouched)
                     {
                         hasTouched = true;
 
-                        bunker.ObjectToTouchPositions.Remove(bunker.ObjectToTouchPositions[i]);
+                        bunker.charBunkerPositions.Remove(bunker.charBunkerPositions[i]);
 
                         return hasTouched;
 
@@ -117,6 +119,69 @@ namespace Spicy_Invader
 
             return hasTouched;
         }
+
+        /// <summary>
+        /// Controle la colision entre le missile et les ennemis
+        /// </summary>
+        /// <returns>True si un des caractère d'un ennemi à été touché</returns>
+        public bool CheckColisionWithEnemies()
+        {
+            //True si une partie du bunker à été touchée
+            bool hasTouched = false;
+
+            //Colision avec les ennemis
+            foreach (EnemyBlock mainBlock in gameObjects.OfType<EnemyBlock>())
+            {
+                //Pour chaque ligne du bloc
+                foreach (EnemyLine line in mainBlock.Block)
+                {
+                    //Pour chaque liste de Tuple dans une ligne
+                    foreach (List<Tuple<int, int>> listeLine in line.CharsOfEnemiesLine)
+                    {
+                        //pour chaque position de caractère d'un ennemi
+                        foreach (Tuple<int, int> enemyPositions in listeLine)
+                        {
+                            //Si le missile rencontre l'ennemi, efface le missile
+                            if (enemyPositions.Item1 == PositionOnX && enemyPositions.Item2 == PositionOnY)
+                            {
+                                hasTouched = true;
+
+                                //pour chaque ennemi dans la ligne
+                                foreach (SpaceShip enemy in line.Enemies)
+                                {
+                                    //pour chaque position de caractère de l'ennemi
+                                    foreach (Tuple<int, int> positionEnemyChars in enemy.EveryCharOfSpaceShip)
+                                    {
+                                        if (positionEnemyChars.Item1 == enemyPositions.Item1 && positionEnemyChars.Item2 == enemyPositions.Item2)
+                                        {
+                                            enemy.NumberOfLives = 0;
+
+                                            //Crée une liste pour copier la liste d'ennemi
+                                            List<SpaceShip> copyEnemiesInLine = new List<SpaceShip>();
+
+                                            //Copie la liste d'ennemi dans une nouvelle liste pour pouvoir la gérer
+                                            copyEnemiesInLine = line.Enemies;
+
+                                            copyEnemiesInLine.Remove(enemy);
+                                            break;
+                                        }
+                                    }
+                                }
+
+
+                                return hasTouched;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return hasTouched;
+        }
+
+
+
+
 
         /// <summary>
         /// Efface l'ancienne position du missile

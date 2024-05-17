@@ -15,6 +15,22 @@ namespace Spicy_Invader
         private List<EnemyLine> _block = new List<EnemyLine>();
 
         /// <summary>
+        /// GETTER / SETTER
+        /// Liste pour stocker les lignes d'ennemis
+        /// </summary>
+        public List<EnemyLine> Block
+        {
+            get
+            {
+                return _block;
+            }
+            set
+            {
+                _block = value;
+            }
+        }
+
+        /// <summary>
         /// Première ligne du bloc
         /// </summary>
         private EnemyLine _firstLine;
