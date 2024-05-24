@@ -56,7 +56,6 @@ namespace Spicy_Invader
         /// <param name="first"></param>
         /// <param name="second"></param>
         /// <param name="third"></param>
-        /// <param name="fifth"></param>
         public EnemyBlock(EnemyLine first, EnemyLine second, EnemyLine third, EnemyLine fourth)
         {
             _firstLine = first;

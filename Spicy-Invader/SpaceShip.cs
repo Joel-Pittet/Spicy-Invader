@@ -84,10 +84,13 @@ namespace Spicy_Invader
         /// </summary>
         public override void Update()
         {
+            //Efface la ligne d'ennemis
             Clear();
 
+            //Fais bouger la ligne d'ennemis
             Move();
 
+            //affiche la ligne d'ennemis et stocke les positions des ennemis
             DrawAndStockPositions();
         }
 

@@ -147,27 +147,22 @@ namespace Spicy_Invader
                                 hasTouched = true;
 
                                 //pour chaque ennemi dans la ligne
-                                foreach (SpaceShip enemy in line.Enemies)
+                                foreach (SpaceShip enemy in line.Enemies.ToList())
                                 {
                                     //pour chaque position de caractère de l'ennemi
-                                    foreach (Tuple<int, int> positionEnemyChars in enemy.EveryCharOfSpaceShip)
+                                    foreach (Tuple<int, int> positionEnemyChars in enemy.EveryCharOfSpaceShip.ToList())
                                     {
                                         if (positionEnemyChars.Item1 == enemyPositions.Item1 && positionEnemyChars.Item2 == enemyPositions.Item2)
                                         {
                                             enemy.NumberOfLives = 0;
 
-                                            //Crée une liste pour copier la liste d'ennemi
-                                            List<SpaceShip> copyEnemiesInLine = new List<SpaceShip>();
+                                            enemy.Clear();
 
-                                            //Copie la liste d'ennemi dans une nouvelle liste pour pouvoir la gérer
-                                            copyEnemiesInLine = line.Enemies;
-
-                                            copyEnemiesInLine.Remove(enemy);
+                                            line.Enemies.Remove(enemy);
                                             break;
                                         }
                                     }
                                 }
-
 
                                 return hasTouched;
                             }
