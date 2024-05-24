@@ -44,6 +44,27 @@ namespace Spicy_Invader
         }
 
         /// <summary>
+        /// Vie et mort de l'ennemi
+        /// </summary>
+        private bool _isKilled = false;
+
+        /// <summary>
+        /// GETTER / SETTER
+        /// Vie et mort de l'ennemi
+        /// </summary>
+        public bool IsKilled
+        {
+            get
+            {
+                return _isKilled;
+            }
+            set
+            {
+                _isKilled = value;
+            }
+        }
+
+        /// <summary>
         /// Stocke chaque positions des caractère composant de l'ennemi
         /// </summary>
         private List<Tuple<int, int>> _everyCharOfSpaceShip = new List<Tuple<int, int>>();
@@ -90,8 +111,12 @@ namespace Spicy_Invader
             //Fais bouger la ligne d'ennemis
             Move();
 
-            //affiche la ligne d'ennemis et stocke les positions des ennemis
-            DrawAndStockPositions();
+            //Affiche le missile uniquement si il n'est pas mort
+            if (!_isKilled)
+            {
+                //affiche la ligne d'ennemis et stocke les positions des ennemis
+                DrawAndStockPositions();
+            }
         }
 
         /// <summary>

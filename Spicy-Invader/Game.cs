@@ -164,11 +164,13 @@ namespace Spicy_Invader
             firstLine.AddEnemies();
             secondLine.AddEnemies();
             thirdLine.AddEnemies();
+            fourthLine.AddEnemies();
 
             //Affiche la ligne d'ennemi
             firstLine.DrawLine();
             secondLine.DrawLine();
             thirdLine.DrawLine();
+            fourthLine.DrawLine();
         }
 
         /// <summary>

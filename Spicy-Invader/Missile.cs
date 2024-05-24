@@ -152,13 +152,23 @@ namespace Spicy_Invader
                                     //pour chaque position de caractère de l'ennemi
                                     foreach (Tuple<int, int> positionEnemyChars in enemy.EveryCharOfSpaceShip.ToList())
                                     {
-                                        if (positionEnemyChars.Item1 == enemyPositions.Item1 && positionEnemyChars.Item2 == enemyPositions.Item2)
+                                        if (positionEnemyChars.Item1 == enemyPositions.Item1 && positionEnemyChars.Item2 == enemyPositions.Item2 && !enemy.IsKilled)
                                         {
+                                            //Met toutes les positions des charactère de l'ennemi touché à 0,0
+                                            for (int i = 0; i < enemy.EveryCharOfSpaceShip.Count; i++)
+                                            {
+                                                enemy.EveryCharOfSpaceShip[i] = new Tuple<int, int>(0,0);
+                                            }
+
+                                            //Met le nombre de vie de l'ennemi a 0 pour le tuer
                                             enemy.NumberOfLives = 0;
 
+                                            //Efface l'ennemi tué
                                             enemy.Clear();
 
-                                            line.Enemies.Remove(enemy);
+                                            //Passe à vrai pour que l'ennemi soit pris en compte comme mort
+                                            enemy.IsKilled = true;
+
                                             break;
                                         }
                                     }
