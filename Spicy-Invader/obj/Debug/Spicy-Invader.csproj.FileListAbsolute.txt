@@ -19,3 +19,10 @@ D:\FPA 2023-2025\1ère année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy
 D:\FPA 2023-2025\1ère année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\bin\Debug\Spicy-Invader.exe
 D:\FPA 2023-2025\1ère année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\bin\Debug\Spicy-Invader.pdb
 D:\FPA 2023-2025\1ère année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\obj\Debug\Spicy-Invader.csproj.AssemblyReference.cache
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\obj\Debug\Spicy-Invader.csproj.AssemblyReference.cache
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\obj\Debug\Spicy-Invader.csproj.CoreCompileInputs.cache
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\bin\Debug\Spicy-Invader.exe.config
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\bin\Debug\Spicy-Invader.exe
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\bin\Debug\Spicy-Invader.pdb
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\obj\Debug\Spicy-Invader.exe
+D:\FPA_2023-2025\1ère_année\Chenaux\ProgrammationPOO\P_Dev\Spicy-Invader\Spicy-Invader\obj\Debug\Spicy-Invader.pdb
