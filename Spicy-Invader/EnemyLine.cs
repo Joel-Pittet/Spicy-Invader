@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace Spicy_Invader
 {
-    internal class EnemyLine : SimpleObject
+    public class EnemyLine : SimpleObject
     {
         /// <summary>
         /// Nombre d'ennemi sur la ligne

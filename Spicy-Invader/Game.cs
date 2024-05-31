@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace Spicy_Invader
 {
-    internal class Game
+    public class Game
     {
 
         /// <summary>

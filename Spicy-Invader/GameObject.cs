@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace Spicy_Invader
 {
-    abstract class GameObject
+    public abstract class GameObject
     {
 
         /// <summary>

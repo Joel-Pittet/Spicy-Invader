@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 namespace Spicy_Invader
 {
 
-    internal class SpaceShip : SimpleObject
+    public class SpaceShip : SimpleObject
     {
 
         //Missile pour que le joueur puisse tirer avec le vaisseau

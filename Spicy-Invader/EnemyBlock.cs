@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Spicy_Invader
 {
-    internal class EnemyBlock : SimpleObject
+    public class EnemyBlock : SimpleObject
     {
         /// <summary>
         /// Liste pour stocker les lignes d'ennemis

@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Spicy_Invader
 {
-    internal class Bunker : SimpleObject
+    public class Bunker : SimpleObject
     {
 
         /// <summary>

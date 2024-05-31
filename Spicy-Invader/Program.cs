@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 namespace Spicy_Invader
 {
 
-    internal class Program
+    public class Program
     {
         [STAThread]
         static void Main(string[] args)

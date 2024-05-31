@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace Spicy_Invader
 {
-    internal class Missile : SimpleObject
+    public class Missile : SimpleObject
     {
 
         /// <summary>

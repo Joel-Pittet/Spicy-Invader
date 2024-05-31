@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Spicy_Invader
 {
-    internal class PlayerSpaceShip : SpaceShip
+    public class PlayerSpaceShip : SpaceShip
     {
 
         /// <summary>
