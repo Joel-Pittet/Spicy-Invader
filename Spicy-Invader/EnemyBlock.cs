@@ -1,9 +1,12 @@
-﻿using System;
+﻿///Auteur: Joël Pittet
+///Date: 31.05.2024
+///Lieu: Lausanne - ETML
+///Description: Classe qui contient les attributs et méthodes concernant le bloc d'ennemis
+///
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {

@@ -4,10 +4,9 @@
 ///Description: Classe qui contient les attributs et les méthodes concernant les bunkers
 ///
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {

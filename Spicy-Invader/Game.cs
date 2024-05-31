@@ -5,15 +5,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {
@@ -83,12 +78,54 @@ namespace Spicy_Invader
         Bunker bunkerRight = new Bunker(positionOnX: 0, positionOnY: 0);
 
         /// <summary>
+        /// Score de la partie
+        /// </summary>
+        private int _score = 0;
+
+        /// <summary>
+        /// GETTER / SETTER
+        /// Score de la partie
+        /// </summary>
+        public int Score
+        {
+            get
+            {
+                return _score;
+            }
+            set
+            {
+                _score = value;
+            }
+        }
+
+        /// <summary>
+        /// Meilleur score du jeu
+        /// </summary>
+        private int _highscore = 0;
+
+        /// <summary>
+        /// GETTER / SETTER
+        /// Meilleur score du jeu
+        /// </summary>
+        public int Highscore
+        {
+            get
+            {
+                return _highscore;
+            }
+            set
+            {
+                _highscore = value;
+            }
+        }
+
+        /// <summary>
         /// Ligne d'ennemis
         /// </summary>
-        static EnemyLine firstLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 0);
-        static EnemyLine secondLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 1);
-        static EnemyLine thirdLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 2);
-        static EnemyLine fourthLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 3);
+        static EnemyLine firstLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 2);
+        static EnemyLine secondLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 3);
+        static EnemyLine thirdLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 4);
+        static EnemyLine fourthLine = new EnemyLine(nbEnemies: 4, enemyShape: ".-=o=-.", levelLine: 5);
 
         /// <summary>
         /// Block d'ennemis
@@ -134,6 +171,23 @@ namespace Spicy_Invader
         /// </summary>
         public void DrawGame()
         {
+            //Place le curseur pour afficher le highscore
+            Console.SetCursorPosition(3, 0);
+
+            //Affiche le highscore
+            Console.WriteLine("HighScore: " + _score);
+
+            //Place le curseur pour afficher le score
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 6, 0);
+
+            //Affiche le score
+            Console.WriteLine("Score: " + _score);
+
+            //Place le curseur pour afficher la vie du vaissea
+            Console.SetCursorPosition(Console.WindowWidth - 10, 0);
+
+            //Affiche la vie du vaisseau
+            Console.WriteLine("Vie(s): " + playerSpaceShip.NumberOfLives);
 
             //Calcule la position de chaque bunker
             CalculatePositionBunker(_NB_BUNKER);
@@ -178,7 +232,6 @@ namespace Spicy_Invader
         /// </summary>
         public void PlayGame()
         {
-
             //Pour que le jeu s'arrete seulement si le vaisseau du joueur est mort
             do
             {

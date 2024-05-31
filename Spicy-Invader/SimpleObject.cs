@@ -1,9 +1,13 @@
-﻿using System;
+﻿///Auteur: Joël Pittet
+///Date: 19.04.2024
+///Lieu: Lausanne - ETML
+///Description: Classe abstraite qui contient les méthodes et attributs "Obligatoires" pour les objets du jeu
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {

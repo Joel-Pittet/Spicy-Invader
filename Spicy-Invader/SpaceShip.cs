@@ -3,19 +3,15 @@
 ///Lieu: Lausanne - ETML
 ///Description: Classe qui contient les méthodes et attributs concernant les vaisseaux du jeu
 
-using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {
-    
+
     internal class SpaceShip : SimpleObject
     {
 
@@ -46,13 +42,13 @@ namespace Spicy_Invader
         /// <summary>
         /// Vie et mort de l'ennemi
         /// </summary>
-        private bool _isKilled = false;
+        //private bool _isKilled = false;
 
         /// <summary>
         /// GETTER / SETTER
         /// Vie et mort de l'ennemi
         /// </summary>
-        public bool IsKilled
+        /*public bool IsKilled
         {
             get
             {
@@ -62,7 +58,7 @@ namespace Spicy_Invader
             {
                 _isKilled = value;
             }
-        }
+        }*/
 
         /// <summary>
         /// Stocke chaque positions des caractère composant de l'ennemi
@@ -111,12 +107,16 @@ namespace Spicy_Invader
             //Fais bouger la ligne d'ennemis
             Move();
 
+            //affiche la ligne d'ennemis et stocke les positions des ennemis
+            DrawAndStockPositions();
+
+            /*
             //Affiche le missile uniquement si il n'est pas mort
             if (!_isKilled)
             {
                 //affiche la ligne d'ennemis et stocke les positions des ennemis
                 DrawAndStockPositions();
-            }
+            }*/
         }
 
         /// <summary>

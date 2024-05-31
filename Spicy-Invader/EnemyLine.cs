@@ -1,10 +1,13 @@
-﻿using System;
+﻿///Auteur: Joël Pittet
+///Date: 31.05.2024
+///Lieu: Lausanne - ETML
+///Description: Classe qui contient les attributs et méthodes pour gérer les lignes d'ennemis
+///
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {

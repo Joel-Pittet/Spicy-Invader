@@ -5,12 +5,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {
@@ -58,7 +56,7 @@ namespace Spicy_Invader
                 NumberOfLives = 0;
    
             }
-            else if (hasTouchedBunker == false && hasTouchedEnemy == false && PositionOnY - 1 >= 0)
+            else if (hasTouchedBunker == false && hasTouchedEnemy == false && PositionOnY - 2 >= 0)
             {
                 //Efface la position précédente du missile
                 ClearMissile();
@@ -69,7 +67,7 @@ namespace Spicy_Invader
                 //Dessine le missile
                 Draw();
 
-            }else if (hasTouchedBunker == false && hasTouchedEnemy == false && PositionOnY - 1 < 0)
+            }else if (hasTouchedBunker == false && hasTouchedEnemy == false && PositionOnY - 2 < 0)
             {
                 //Efface le missile
                 ClearMissile();
@@ -152,13 +150,13 @@ namespace Spicy_Invader
                                     //pour chaque position de caractère de l'ennemi
                                     foreach (Tuple<int, int> positionEnemyChars in enemy.EveryCharOfSpaceShip.ToList())
                                     {
-                                        if (positionEnemyChars.Item1 == enemyPositions.Item1 && positionEnemyChars.Item2 == enemyPositions.Item2 && !enemy.IsKilled)
+                                        if (positionEnemyChars.Item1 == enemyPositions.Item1 && positionEnemyChars.Item2 == enemyPositions.Item2)
                                         {
-                                            //Met toutes les positions des charactère de l'ennemi touché à 0,0
+                                            /*//Met toutes les positions des charactère de l'ennemi touché à 0,0
                                             for (int i = 0; i < enemy.EveryCharOfSpaceShip.Count; i++)
                                             {
                                                 enemy.EveryCharOfSpaceShip[i] = new Tuple<int, int>(0,0);
-                                            }
+                                            }*/
 
                                             //Met le nombre de vie de l'ennemi a 0 pour le tuer
                                             enemy.NumberOfLives = 0;
@@ -166,8 +164,11 @@ namespace Spicy_Invader
                                             //Efface l'ennemi tué
                                             enemy.Clear();
 
+                                            //Enleve l'ennemi de la liste
+                                            line.Enemies.Remove(enemy);
+
                                             //Passe à vrai pour que l'ennemi soit pris en compte comme mort
-                                            enemy.IsKilled = true;
+                                            //enemy.IsKilled = true;
 
                                             break;
                                         }
@@ -183,10 +184,6 @@ namespace Spicy_Invader
 
             return hasTouched;
         }
-
-
-
-
 
         /// <summary>
         /// Efface l'ancienne position du missile

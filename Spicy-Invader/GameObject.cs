@@ -4,11 +4,10 @@
 ///Description: Classe abstraite qui contient les méthodes "Obligatoire" pour chaque objet du jeu 
 ///             et une liste des objets du jeu pour les faire intéragir entre eux
 ///
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {

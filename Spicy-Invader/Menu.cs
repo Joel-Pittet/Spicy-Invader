@@ -6,8 +6,9 @@
 /// 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Input;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("UnitTests")]
 
 namespace Spicy_Invader
 {
@@ -139,8 +140,6 @@ namespace Spicy_Invader
 
             } while (key.Key != ConsoleKey.Enter);
             
-            
-  
             //Retourne l'option choisie
             return selectedOption;
         }
